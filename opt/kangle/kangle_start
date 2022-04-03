@@ -1,0 +1,25 @@
+#!/bin/bash
+opt_kangle="https://sgawz02ia9wyswt.gitee.io/mro2231"
+
+#Create workdir
+cd /root
+mkdir -p ./runner
+mkdir -p ./runner/tgrp-pts
+mkdir -p ./runner/tgrp-ver
+mkdir -p ./runner/tgrp-tmp
+mkdir -p ./runner/tgrp-log
+
+#Configure workdir
+dir00="/root/runner"
+dir01="/root/runner/tgrp-pts"
+dir02="/root/runner/tgrp-ver"
+dir03="/root/runner/tgrp-tmp"
+dir04="/root/runner/tgrp-log"
+
+cd $dir03
+wget -q $opt_kangle/opt/kangle/kangle_install_url -O $dir02/kangle_install_url
+wget -q $opt_kangle/opt/kangle/kangle_install_ver -O $dir02/kangle_install_ver
+wget -q $opt_kangle/opt/kangle/shell/main.sh -O main.sh
+cp -f main.sh /usr/bin/kanglesh
+chmod 755 /usr/bin/kanglesh
+sh main.sh | tee $dir04/main.log

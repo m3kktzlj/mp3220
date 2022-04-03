@@ -1,0 +1,19 @@
+[Unit]
+Description=Redis data structure server
+Documentation=https://redis.io/documentation
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=forking
+PrivateTmp=yes
+Restart=always
+ExecStart=/usr/local/bin/redis-server /etc/redis/redis.conf
+User=redis
+Group=redis
+LimitCORE=infinity
+LimitNOFILE=65535
+LimitNPROC=65535
+
+[Install]
+WantedBy=multi-user.target

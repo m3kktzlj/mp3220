@@ -1,0 +1,80 @@
+#!/bin/bash
+
+#Configure workdir
+dir00="/usr/local/runner"
+dir01="/usr/local/runner/tgrp-pts"
+dir02="/usr/local/runner/tgrp-ver"
+dir03="/usr/local/runner/tgrp-tmp"
+dir04="/usr/local/runner/tgrp-log"
+
+source $dir02/RUNNER_9999
+
+#start
+function qiangidc_main(){
+    cd $dir03
+    wget -q $runner_url/opt/qiangidc/config/qiangidc_install_ver -O $dir02/qiangidc_install_ver
+    wget -q $runner_url/opt/qiangidc/shell/qiangidc_main.sh -O qiangidc_main.sh
+    cp -f qiangidc_main.sh /usr/bin/qiangidc
+    chmod 755 /usr/bin/qiangidc
+    sh qiangidc_main.sh | tee $dir04/qiangidc_main.log
+}
+
+function qiangidc_install_url_coding(){
+	wget -q $runner_url/opt/qiangidc/config/qiangidc_install_url_coding -O $dir02/qiangidc_install_url
+	qiangidc_main
+}
+
+function qiangidc_install_url_fastgit(){
+	wget -q $runner_url/opt/qiangidc/config/qiangidc_install_url_fastgit -O $dir02/qiangidc_install_url
+	qiangidc_main
+}
+
+function qiangidc_install_url_github(){
+	wget -q $runner_url/opt/qiangidc/config/qiangidc_install_url_github -O $dir02/qiangidc_install_url
+	qiangidc_main
+}
+
+function qiangidc_install_url_gitlab(){
+	wget -q $runner_url/opt/qiangidc/config/qiangidc_install_url_gitlab -O $dir02/qiangidc_install_url
+	qiangidc_main
+}
+
+function qiangidc_install_url_bitbucket(){
+	wget -q $runner_url/opt/qiangidc/config/qiangidc_install_url_bitbucket -O $dir02/qiangidc_install_url
+	qiangidc_main
+}
+
+function Start(){
+	cd $dir03
+	echo -e "———————————————————————————
+	\033[1mＫＡＮＧＬＥＳＯＦＴ\033[0m
+	\033[32mMysql配置文件(my.cnf)选择\033[0m
+	（更改配置文件之后会重启数据库）
+	1. ◎ 国内优先coding（默认）
+	2. ◎ 国内一般fastgit
+	3. ◎ 国外优先github
+	4. ◎ 国外优先gitlab
+	5. ◎ 国外优先bitbucket
+	0. ◎ 
+	0. ◎ 
+	0. ◎ 
+	0. ◎ 退出安装"
+	read -p "请输入序号并回车,或按回车使用默认设置:" YORN
+	if [ "$YORN" = "0" ]; then
+        exit 0;
+	elif [ "$YORN" = "1" ]; then
+		qiangidc_install_url_coding
+	elif [ "$YORN" = "2" ]; then
+		qiangidc_install_url_fastgit
+	elif [ "$YORN" = "3" ]; then
+		qiangidc_install_url_github
+	elif [ "$YORN" = "4" ]; then
+		qiangidc_install_url_gitlab
+	elif [ "$YORN" = "5" ]; then
+		qiangidc_install_url_bitbucket
+	else
+		qiangidc_install_url_coding
+	fi
+}
+
+Start

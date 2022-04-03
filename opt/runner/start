@@ -1,0 +1,54 @@
+#!/bin/bash
+
+#Create workdir
+mkdir -p /usr/local/runner
+mkdir -p /usr/local/runner/tgrp-pts
+mkdir -p /usr/local/runner/tgrp-ver
+mkdir -p /usr/local/runner/tgrp-tmp
+mkdir -p /usr/local/runner/tgrp-log
+
+#Configure workdir
+dir00="/usr/local/runner"
+dir01="/usr/local/runner/tgrp-pts"
+dir02="/usr/local/runner/tgrp-ver"
+dir03="/usr/local/runner/tgrp-tmp"
+dir04="/usr/local/runner/tgrp-log"
+
+#source config
+runner_url="http://test01.haozhejia.cn"
+
+function runner_password_successful(){
+
+	echo '[验证成功] 正在更新中......';
+	
+	#UPDATE RUNNER_9999
+	cd $dir00
+    wget $runner_url/$dir02/RUNNER_9999.tgrp --no-check-certificate -O $dir03/RUNNER_9999.tgrp
+	cd $dir03
+	unzip -P $runner_password RUNNER_9999.tgrp
+	cp -Rf RUNNER_9999 $dir02/RUNNER_9999
+	rm -rf RUNNER_9999
+	rm -rf RUNNER_9999.tgrp
+    wget -q $runner_url/opt/runner/shell/runner_main.sh -O runner_main.sh
+	sh runner_main.sh
+    exit 0;
+}
+
+function runner_password_failed(){
+
+	echo '[验证失败] 请5秒后重试';
+	sleep 5
+	sh start
+	exit 0;
+}
+
+#Configure runner
+runner_password=""
+read -p "请输入密码:" runner_password
+runner_password_md5=` echo -n $runner_password|md5sum|cut -d ' ' -f1 `
+
+if [[ "$runner_password_md5" == "2bcf55ed5d6f963706c7066079a45ffb" ]]; then
+    runner_password_successful
+else 
+    runner_password_failed
+fi
