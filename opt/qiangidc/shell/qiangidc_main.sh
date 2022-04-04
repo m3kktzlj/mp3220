@@ -7,7 +7,7 @@ dir02="/usr/local/runner/tgrp-ver"
 dir03="/usr/local/runner/tgrp-tmp"
 dir04="/usr/local/runner/tgrp-log"
 
-source $dir02/RUNNER_9999
+source $dir02/RUNNER_data
 source $dir02/qiangidc_install_url
 source $dir02/qiangidc_install_ver
 
@@ -533,7 +533,7 @@ function XtraBackup()
 	else
 		xtra_attr="el6.i686";
 	fi
-	wget -O percona-xtrabackup-24-${xtra_version}.${xtra_attr}.rpm $mrocdn_3221/files/XtraBackup/percona-xtrabackup-24-${xtra_version}.${xtra_attr}.rpm
+	wget -O percona-xtrabackup-24-${xtra_version}.${xtra_attr}.rpm $mpcdn_3821/files/XtraBackup/percona-xtrabackup-24-${xtra_version}.${xtra_attr}.rpm
 	yum -y install percona-xtrabackup-24-${xtra_version}.${xtra_attr}.rpm
 }
 

@@ -44,7 +44,7 @@ elif [ "$line" = "php80" ];then
 fi
 if [ -d $PREFIX/$line ];then
 file="ixed-$SYS-${php_version}.zip"
-wget -c $mrocdn_3221/files/ixed/$file -O $file
+wget -c $mpcdn_3821/files/ixed/$file -O $file
 unzip $file
 mkdir -p $PREFIX/$line/ixed
 rm -rf $PREFIX/$line/ixed/ixed.${php_version}.lin

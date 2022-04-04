@@ -16,7 +16,7 @@ function install_template(){
 	vfile=$1
 	rm -rf /vhs/kangle/nodewww/webftp/vhost/view/default;
 	rm -f ${vfile}.zip
-	wget $mrocdn_3221/files/view/${vfile}.zip?$RANDOM -O ${vfile}.zip -c;
+	wget $mpcdn_3821/files/view/${vfile}.zip?$RANDOM -O ${vfile}.zip -c;
 	unzip -q ${vfile}.zip -d /vhs/kangle/nodewww/webftp/vhost/view;
 	rm -rf /vhs/kangle/nodewww/webftp/framework/templates_c/default/*;
 	echo "————————————————————————————————————————————————————

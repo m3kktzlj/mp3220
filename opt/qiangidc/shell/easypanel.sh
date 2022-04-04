@@ -7,7 +7,7 @@ dir02="/usr/local/runner/tgrp-ver"
 dir03="/usr/local/runner/tgrp-tmp"
 dir04="/usr/local/runner/tgrp-log"
 
-source $dir02/RUNNER_9999
+source $dir02/RUNNER_data
 source $dir02/qiangidc_install_url
 source $dir02/qiangidc_install_ver
 
@@ -70,7 +70,7 @@ function setup_easypanel
 		fi
 	fi
 	# chmod 700 $PREFIX/etc $PREFIX/var $PREFIX/nodewww/data	
-	EASYPANEL_URL="$mrocdn_3223/files/easypanel/easypanel-$EASYPANEL_VERSION-$ARCH-$SYSVERSION.tar.gz"
+	EASYPANEL_URL="$mpcdn_3823/files/easypanel/easypanel-$EASYPANEL_VERSION-$ARCH-$SYSVERSION.tar.gz"
 	EA_FILE_NAME="easypanel-$EASYPANEL_VERSION-$ARCH-$SYSVERSION.tar.gz"
 	wget $EASYPANEL_URL -O $EA_FILE_NAME -c
 	if [ $? != 0 ] ; then

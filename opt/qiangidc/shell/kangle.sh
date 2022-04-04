@@ -7,7 +7,7 @@ dir02="/usr/local/runner/tgrp-ver"
 dir03="/usr/local/runner/tgrp-tmp"
 dir04="/usr/local/runner/tgrp-log"
 
-source $dir02/RUNNER_9999
+source $dir02/RUNNER_data
 source $dir02/qiangidc_install_url
 source $dir02/qiangidc_install_ver
 
@@ -60,7 +60,7 @@ function setup_kangle_completed
 	fi
 	#http://download.cdnbest.com/ent/kangle-ent-3.4.8-6-x64.tar.gz
 	#https://www.cdnbest.com/download/cdnbest/kangle-cdnbest-3.5.16.9-7-x64.tar.gz
-	URL="$mrocdn_3222/files/kangle-ent/kangle-ent-$VERSION-$ARCH.tar.gz"
+	URL="$mpcdn_3822/files/kangle-ent/kangle-ent-$VERSION-$ARCH.tar.gz"
 	wget $URL -O kangle.tar.gz
 	tar xzf kangle.tar.gz
 	cd kangle
@@ -130,7 +130,7 @@ function setup_kangle
 	if [  -f kangle-$VERSION.tar.gz ] ; then
 		rm -f kangle-$VERSION.tar.gz
 	fi	
-	wget $mrocdn_3222/files/kangle/$KANGLE_FILE_NAME
+	wget $mpcdn_3822/files/kangle/$KANGLE_FILE_NAME
 	if [ $? != 0 ] ; then
 		exit $?
 	fi

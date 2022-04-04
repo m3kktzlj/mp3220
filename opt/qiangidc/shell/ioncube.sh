@@ -7,7 +7,7 @@ dir02="/usr/local/runner/tgrp-ver"
 dir03="/usr/local/runner/tgrp-tmp"
 dir04="/usr/local/runner/tgrp-log"
 
-source $dir02/RUNNER_9999
+source $dir02/RUNNER_data
 source $dir02/qiangidc_install_url
 source $dir02/qiangidc_install_ver
 
@@ -42,7 +42,7 @@ elif [ "$line" = "php74" ];then
 fi
 if [ -d $PREFIX/$line ];then
 file="ioncube-$SYS-${php_version}.zip"
-wget -c $mrocdn_3221/files/ioncube/$file -O $file
+wget -c $mpcdn_3821/files/ioncube/$file -O $file
 unzip $file
 mkdir -p $PREFIX/$line/ioncube
 mv -f ioncube_loader_lin_${php_version}.so $PREFIX/$line/ioncube/ioncube_loader_lin_${php_version}.so

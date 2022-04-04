@@ -33,27 +33,27 @@ function stat_iptables
 }
 function installkangle(){
 	cd $dir03
-	wget -q $mrocdn_2231/opt/kangle/shell/kangle.sh -O kangle.sh;sh kangle.sh $kangle_ver $kangle_completed | tee $dir04/kangle.log
+	wget -q $mpcdn_2220/opt/kangle/shell/kangle.sh -O kangle.sh;sh kangle.sh $kangle_ver $kangle_completed | tee $dir04/kangle.log
 }
 function installep(){
 	cd $dir03
-	wget -q $mrocdn_2231/opt/kangle/shell/easypanel.sh -O easypanel.sh;sh easypanel.sh | tee $dir04/easypanel.log
+	wget -q $mpcdn_2220/opt/kangle/shell/easypanel.sh -O easypanel.sh;sh easypanel.sh | tee $dir04/easypanel.log
 }
 function installftp(){
 	cd $dir03
-	wget -q $mrocdn_2231/opt/kangle/shell/pureftp.sh -O pureftp.sh;sh pureftp.sh | tee $dir04/pureftp.log
+	wget -q $mpcdn_2220/opt/kangle/shell/pureftp.sh -O pureftp.sh;sh pureftp.sh | tee $dir04/pureftp.log
 }
 function installsql(){
 	cd $dir03
-	wget -q $mrocdn_2231/opt/kangle/shell/mysql.sh -O mysql.sh;sh mysql.sh $mysql_ver $mysql_root_password | tee $dir04/mysql.log
+	wget -q $mpcdn_2220/opt/kangle/shell/mysql.sh -O mysql.sh;sh mysql.sh $mysql_ver $mysql_root_password | tee $dir04/mysql.log
 }
 function installpm(){
 	cd $dir03
-	wget -q $mrocdn_2231/opt/kangle/shell/phpmyadmin.sh -O phpmyadmin.sh;sh phpmyadmin.sh | tee $dir04/phpmyadmin.log
+	wget -q $mpcdn_2220/opt/kangle/shell/phpmyadmin.sh -O phpmyadmin.sh;sh phpmyadmin.sh | tee $dir04/phpmyadmin.log
 }
 function install_php_compile(){
 	cd $dir03
-	wget -q $mrocdn_2231/opt/kangle/shell/php_compile.sh -O php_compile.sh | tee $dir04/php_compile-00.log
+	wget -q $mpcdn_2220/opt/kangle/shell/php_compile.sh -O php_compile.sh | tee $dir04/php_compile-00.log
 	sh php_compile.sh 56 | tee $dir04/php56.log
 	if [ "$select_ver" = "allc" ]; then
 	sh php_compile.sh 53 | tee $dir04/php53.log
@@ -73,7 +73,7 @@ function install_php_compile(){
 }
 function install_php_rapidly(){
 	cd $dir03
-	wget -q $mrocdn_2231/opt/kangle/shell/php_rapidly.sh -O php_rapidly.sh
+	wget -q $mpcdn_2220/opt/kangle/shell/php_rapidly.sh -O php_rapidly.sh
 	sh php_rapidly.sh php56 | tee $dir04/php56.log
 	if [ "$select_ver" = "all" ]; then
 	sh php_rapidly.sh php53 | tee $dir04/php53.log
@@ -92,7 +92,7 @@ function install_php_rapidly(){
 	ln -s /vhs/kangle/ext/php56/bin/php /usr/bin/php
 }
 function installend(){
-	wget -q $mrocdn_2231/opt/kangle/shell/complete.sh -O complete.sh;sh complete.sh $mysql_root_password | tee $dir04/complete.log
+	wget -q $mpcdn_2220/opt/kangle/shell/complete.sh -O complete.sh;sh complete.sh $mysql_root_password | tee $dir04/complete.log
 	exit 0
 }
 stat_iptables

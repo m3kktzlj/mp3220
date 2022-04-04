@@ -72,14 +72,14 @@ if [ ! -f /etc/redis/redis.conf ];then
 fi
 
 if [ "$release" == "6" ];then
-	wget -O /etc/init.d/redis $mrocdn_2231/opt/kangle/config/redis/redis.init
+	wget -O /etc/init.d/redis $mpcdn_2220/opt/kangle/config/redis/redis.init
 	chmod +x /etc/init.d/redis
 
 	chkconfig --add redis
 	chkconfig redis on
 	service redis start
 else
-	wget -O /usr/lib/systemd/system/redis.service $mrocdn_2231/opt/kangle/config/redis/redis.service
+	wget -O /usr/lib/systemd/system/redis.service $mpcdn_2220/opt/kangle/config/redis/redis.service
 
 	systemctl daemon-reload
 	systemctl enable redis

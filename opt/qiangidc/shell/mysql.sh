@@ -7,7 +7,7 @@ dir02="/usr/local/runner/tgrp-ver"
 dir03="/usr/local/runner/tgrp-tmp"
 dir04="/usr/local/runner/tgrp-log"
 
-source $dir02/RUNNER_9999
+source $dir02/RUNNER_data
 source $dir02/qiangidc_install_url
 source $dir02/qiangidc_install_ver
 
@@ -29,23 +29,23 @@ echo $mysql_ver > /etc/mysql_ver
 
 if [ "$release" = "8" ] && [ "$mysql_ver" != "8" ];then
 	if [ "$mysql_ver" = "6" ]; then
-		yum -y install $mrocdn_3227/files/mysql-yum/mysql56-community-el7/mysql-community-common-${MYSQL_VERSION56}.el7.x86_64.rpm
-		yum -y install $mrocdn_3227/files/mysql-yum/mysql56-community-el7/mysql-community-libs-${MYSQL_VERSION56}.el7.x86_64.rpm
-		yum -y install $mrocdn_3227/files/mysql-yum/mysql56-community-el7/mysql-community-devel-${MYSQL_VERSION56}.el7.x86_64.rpm
-		yum -y install $mrocdn_3227/files/mysql-yum/mysql56-community-el7/mysql-community-client-${MYSQL_VERSION56}.el7.x86_64.rpm
-		wget $mrocdn_3227/files/mysql-yum/mysql56-community-el7/mysql-community-server-${MYSQL_VERSION56}.el7.x86_64.rpm.00
-		wget $mrocdn_3227/files/mysql-yum/mysql56-community-el7/mysql-community-server-${MYSQL_VERSION56}.el7.x86_64.rpm.01
+		yum -y install $mpcdn_3827/files/mysql-yum/mysql56-community-el7/mysql-community-common-${MYSQL_VERSION56}.el7.x86_64.rpm
+		yum -y install $mpcdn_3827/files/mysql-yum/mysql56-community-el7/mysql-community-libs-${MYSQL_VERSION56}.el7.x86_64.rpm
+		yum -y install $mpcdn_3827/files/mysql-yum/mysql56-community-el7/mysql-community-devel-${MYSQL_VERSION56}.el7.x86_64.rpm
+		yum -y install $mpcdn_3827/files/mysql-yum/mysql56-community-el7/mysql-community-client-${MYSQL_VERSION56}.el7.x86_64.rpm
+		wget $mpcdn_3827/files/mysql-yum/mysql56-community-el7/mysql-community-server-${MYSQL_VERSION56}.el7.x86_64.rpm.00
+		wget $mpcdn_3827/files/mysql-yum/mysql56-community-el7/mysql-community-server-${MYSQL_VERSION56}.el7.x86_64.rpm.01
 		cat mysql-community-server-${MYSQL_VERSION56}.el7.x86_64.rpm.* >mysql-community-server-${MYSQL_VERSION56}.el7.x86_64.rpm 
 		yum -y install mysql-community-server-${MYSQL_VERSION56}.el7.x86_64.rpm	
 	elif [ "$mysql_ver" = "7" ]; then
-		yum -y install $mrocdn_3228/files/mysql-yum/mysql57-community-el7/mysql-community-common-${MYSQL_VERSION57}.el7.x86_64.rpm
-		yum -y install $mrocdn_3228/files/mysql-yum/mysql57-community-el7/mysql-community-libs-${MYSQL_VERSION57}.el7.x86_64.rpm
-		yum -y install $mrocdn_3228/files/mysql-yum/mysql57-community-el7/mysql-community-devel-${MYSQL_VERSION57}.el7.x86_64.rpm
-		yum -y install $mrocdn_3228/files/mysql-yum/mysql57-community-el7/mysql-community-client-${MYSQL_VERSION57}.el7.x86_64.rpm
-		wget $mrocdn_3228/files/mysql-yum/mysql57-community-el7/mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm.00
-		wget $mrocdn_3228/files/mysql-yum/mysql57-community-el7/mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm.01
-		wget $mrocdn_3228/files/mysql-yum/mysql57-community-el7/mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm.02
-		wget $mrocdn_3228/files/mysql-yum/mysql57-community-el7/mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm.03
+		yum -y install $mpcdn_3828/files/mysql-yum/mysql57-community-el7/mysql-community-common-${MYSQL_VERSION57}.el7.x86_64.rpm
+		yum -y install $mpcdn_3828/files/mysql-yum/mysql57-community-el7/mysql-community-libs-${MYSQL_VERSION57}.el7.x86_64.rpm
+		yum -y install $mpcdn_3828/files/mysql-yum/mysql57-community-el7/mysql-community-devel-${MYSQL_VERSION57}.el7.x86_64.rpm
+		yum -y install $mpcdn_3828/files/mysql-yum/mysql57-community-el7/mysql-community-client-${MYSQL_VERSION57}.el7.x86_64.rpm
+		wget $mpcdn_3828/files/mysql-yum/mysql57-community-el7/mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm.00
+		wget $mpcdn_3828/files/mysql-yum/mysql57-community-el7/mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm.01
+		wget $mpcdn_3828/files/mysql-yum/mysql57-community-el7/mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm.02
+		wget $mpcdn_3828/files/mysql-yum/mysql57-community-el7/mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm.03
 		cat mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm.* >mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm 
 		yum -y install mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm
 	fi

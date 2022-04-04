@@ -29,23 +29,23 @@ echo $mysql_ver > /etc/mysql_ver
 
 if [ "$release" = "8" ] && [ "$mysql_ver" != "8" ];then
 	if [ "$mysql_ver" = "6" ]; then
-		yum -y install $mrocdn_3227/files/mysql-yum/mysql56-community-el7/mysql-community-common-${MYSQL_VERSION56}.el7.x86_64.rpm
-		yum -y install $mrocdn_3227/files/mysql-yum/mysql56-community-el7/mysql-community-libs-${MYSQL_VERSION56}.el7.x86_64.rpm
-		yum -y install $mrocdn_3227/files/mysql-yum/mysql56-community-el7/mysql-community-devel-${MYSQL_VERSION56}.el7.x86_64.rpm
-		yum -y install $mrocdn_3227/files/mysql-yum/mysql56-community-el7/mysql-community-client-${MYSQL_VERSION56}.el7.x86_64.rpm
-		wget $mrocdn_3227/files/mysql-yum/mysql56-community-el7/mysql-community-server-${MYSQL_VERSION56}.el7.x86_64.rpm.00
-		wget $mrocdn_3227/files/mysql-yum/mysql56-community-el7/mysql-community-server-${MYSQL_VERSION56}.el7.x86_64.rpm.01
+		yum -y install $mpcdn_3827/files/mysql-yum/mysql56-community-el7/mysql-community-common-${MYSQL_VERSION56}.el7.x86_64.rpm
+		yum -y install $mpcdn_3827/files/mysql-yum/mysql56-community-el7/mysql-community-libs-${MYSQL_VERSION56}.el7.x86_64.rpm
+		yum -y install $mpcdn_3827/files/mysql-yum/mysql56-community-el7/mysql-community-devel-${MYSQL_VERSION56}.el7.x86_64.rpm
+		yum -y install $mpcdn_3827/files/mysql-yum/mysql56-community-el7/mysql-community-client-${MYSQL_VERSION56}.el7.x86_64.rpm
+		wget $mpcdn_3827/files/mysql-yum/mysql56-community-el7/mysql-community-server-${MYSQL_VERSION56}.el7.x86_64.rpm.00
+		wget $mpcdn_3827/files/mysql-yum/mysql56-community-el7/mysql-community-server-${MYSQL_VERSION56}.el7.x86_64.rpm.01
 		cat mysql-community-server-${MYSQL_VERSION56}.el7.x86_64.rpm.* >mysql-community-server-${MYSQL_VERSION56}.el7.x86_64.rpm 
 		yum -y install mysql-community-server-${MYSQL_VERSION56}.el7.x86_64.rpm	
 	elif [ "$mysql_ver" = "7" ]; then
-		yum -y install $mrocdn_3228/files/mysql-yum/mysql57-community-el7/mysql-community-common-${MYSQL_VERSION57}.el7.x86_64.rpm
-		yum -y install $mrocdn_3228/files/mysql-yum/mysql57-community-el7/mysql-community-libs-${MYSQL_VERSION57}.el7.x86_64.rpm
-		yum -y install $mrocdn_3228/files/mysql-yum/mysql57-community-el7/mysql-community-devel-${MYSQL_VERSION57}.el7.x86_64.rpm
-		yum -y install $mrocdn_3228/files/mysql-yum/mysql57-community-el7/mysql-community-client-${MYSQL_VERSION57}.el7.x86_64.rpm
-		wget $mrocdn_3228/files/mysql-yum/mysql57-community-el7/mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm.00
-		wget $mrocdn_3228/files/mysql-yum/mysql57-community-el7/mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm.01
-		wget $mrocdn_3228/files/mysql-yum/mysql57-community-el7/mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm.02
-		wget $mrocdn_3228/files/mysql-yum/mysql57-community-el7/mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm.03
+		yum -y install $mpcdn_3828/files/mysql-yum/mysql57-community-el7/mysql-community-common-${MYSQL_VERSION57}.el7.x86_64.rpm
+		yum -y install $mpcdn_3828/files/mysql-yum/mysql57-community-el7/mysql-community-libs-${MYSQL_VERSION57}.el7.x86_64.rpm
+		yum -y install $mpcdn_3828/files/mysql-yum/mysql57-community-el7/mysql-community-devel-${MYSQL_VERSION57}.el7.x86_64.rpm
+		yum -y install $mpcdn_3828/files/mysql-yum/mysql57-community-el7/mysql-community-client-${MYSQL_VERSION57}.el7.x86_64.rpm
+		wget $mpcdn_3828/files/mysql-yum/mysql57-community-el7/mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm.00
+		wget $mpcdn_3828/files/mysql-yum/mysql57-community-el7/mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm.01
+		wget $mpcdn_3828/files/mysql-yum/mysql57-community-el7/mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm.02
+		wget $mpcdn_3828/files/mysql-yum/mysql57-community-el7/mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm.03
 		cat mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm.* >mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm 
 		yum -y install mysql-community-server-${MYSQL_VERSION57}.el7.x86_64.rpm
 	fi
@@ -60,15 +60,15 @@ fi;
 chkconfig --level 2345 mysqld on
 
 if [ "$mysql_ver" = "8" ]; then
-	wget -q $mrocdn_2231/opt/kangle/config/mysql8.0/my-01.cnf -O /etc/my.cnf
+	wget -q $mpcdn_2220/opt/kangle/config/mysql8.0/my-01.cnf -O /etc/my.cnf
 	if [ "$release" = "8" ]; then
 		mkdir /home/mysql
 		chown -R mysql:mysql /home/mysql
 	fi
 elif [ "$mysql_ver" = "7" ]; then
-	wget -q $mrocdn_2231/opt/kangle/config/mysql5.7/my-01.cnf -O /etc/my.cnf
+	wget -q $mpcdn_2220/opt/kangle/config/mysql5.7/my-01.cnf -O /etc/my.cnf
 else
-	wget -q $mrocdn_2231/opt/kangle/config/mysql5.6/my-01.cnf -O /etc/my.cnf
+	wget -q $mpcdn_2220/opt/kangle/config/mysql5.6/my-01.cnf -O /etc/my.cnf
 fi
 
 rm -f /home/mysql/ibdata1
@@ -77,4 +77,4 @@ rm -f /home/mysql/ib_logfile0
 rm -f /home/mysql/ib_logfile1
 service mysqld restart
 #重置MySQL密码
-wget -q $mrocdn_2231/opt/kangle/shell/mysql_password.sh -O mysql_password.sh;sh mysql_password.sh $mysql_root_password
+wget -q $mpcdn_2220/opt/kangle/shell/mysql_password.sh -O mysql_password.sh;sh mysql_password.sh $mysql_root_password

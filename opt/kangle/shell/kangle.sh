@@ -60,7 +60,7 @@ function setup_kangle_completed
 	fi
 	#http://download.cdnbest.com/ent/kangle-ent-3.4.8-6-x64.tar.gz
 	#https://www.cdnbest.com/download/cdnbest/kangle-cdnbest-3.5.16.9-7-x64.tar.gz
-	URL="$mrocdn_3222/files/kangle-ent/kangle-ent-$VERSION-$ARCH.tar.gz"
+	URL="$mpcdn_3822/files/kangle-ent/kangle-ent-$VERSION-$ARCH.tar.gz"
 	wget $URL -O kangle.tar.gz
 	tar xzf kangle.tar.gz
 	cd kangle
@@ -68,7 +68,7 @@ function setup_kangle_completed
 	./install.sh $PREFIX
 
 	if [ ! -f $PREFIX/etc/kanglestat ] ; then
-		wget $mrocdn_2231/opt/kangle/config/kanglestat -O $PREFIX/etc/kanglestat
+		wget $mpcdn_2220/opt/kangle/config/kanglestat -O $PREFIX/etc/kanglestat
 	fi
 	if [ ! -f /etc/init.d/kangle ] ; then
 		\cp $PREFIX/etc/kanglestat /etc/init.d/kangle
@@ -130,7 +130,7 @@ function setup_kangle
 	if [  -f kangle-$VERSION.tar.gz ] ; then
 		rm -f kangle-$VERSION.tar.gz
 	fi	
-	wget $mrocdn_3222/files/kangle/$KANGLE_FILE_NAME
+	wget $mpcdn_3822/files/kangle/$KANGLE_FILE_NAME
 	if [ $? != 0 ] ; then
 		exit $?
 	fi
@@ -155,7 +155,7 @@ function setup_kangle
 		exit $?
 	else
 		if [ ! -f $PREFIX/etc/kanglestat ] ; then
-			wget $mrocdn_2231/opt/kangle/config/kanglestat -O $PREFIX/etc/kanglestat
+			wget $mpcdn_2220/opt/kangle/config/kanglestat -O $PREFIX/etc/kanglestat
 		fi
 		if [ ! -f /etc/init.d/kangle ] ; then
 			\cp $PREFIX/etc/kanglestat /etc/init.d/kangle

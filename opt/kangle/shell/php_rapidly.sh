@@ -40,7 +40,7 @@ if [ "$release" = "8" ]; then
 else
 	if [ ! -d /usr/local/lib/pkgconfig ]; then
 		yum -y remove libzip libzip-devel
-		wget --no-check-certificate -O libzip-1.3.2.tar.gz $mrocdn_3221/files/completed/libzip-1.3.2.tar.gz
+		wget --no-check-certificate -O libzip-1.3.2.tar.gz $mpcdn_3821/files/completed/libzip-1.3.2.tar.gz
 		tar xvf libzip-1.3.2.tar.gz
 		cd libzip-1.3.2
 		./configure
@@ -79,7 +79,7 @@ function install_curl()
 {
 if ! openssl version | grep -i "openssl 1.0"; then
 	if [ ! -f /usr/local/openssl-1.0.2u/bin/openssl ]; then
-		wget $mrocdn_3221/files/completed/openssl-1.0.2u.tar.gz -O openssl-1.0.2u.tar.gz;
+		wget $mpcdn_3821/files/completed/openssl-1.0.2u.tar.gz -O openssl-1.0.2u.tar.gz;
 		tar -zxvf openssl-1.0.2u.tar.gz;
 		cd openssl-1.0.2u;
 		./config -fPIC --prefix=/usr/local/openssl-1.0.2u --openssldir=/usr/local/openssl-1.0.2u;
@@ -87,7 +87,7 @@ if ! openssl version | grep -i "openssl 1.0"; then
 		cd ..
 	fi;
 	if [ ! -f /usr/local/curl-7.61.1/bin/curl ]; then
-		wget $mrocdn_3221/files/completed/curl-7.61.1.tar.bz2 -O curl-7.61.1.tar.bz2;
+		wget $mpcdn_3821/files/completed/curl-7.61.1.tar.bz2 -O curl-7.61.1.tar.bz2;
 		tar -xvf curl-7.61.1.tar.bz2;
 		cd curl-7.61.1;
 		./configure --prefix=/usr/local/curl-7.61.1 --with-ssl=/usr/local/openssl-1.0.2u --enable-ldap --enable-ldaps;
@@ -101,59 +101,59 @@ if [ "$intallphpv" = "php52" ];then
 	php_version="$PHP52"
 	php_dir="tpl_php52"
     php_rapidly_ver="ver5"
-    php_rapidly_url="$mrocdn_3241"
+    php_rapidly_url="$mpcdn_3841"
 elif [ "$intallphpv" = "php53" ];then
 	php_version="$PHP53"
 	php_dir="php53"
     php_rapidly_ver="ver5"
-    php_rapidly_url="$mrocdn_3241"
+    php_rapidly_url="$mpcdn_3841"
 	install_curl
 elif [ "$intallphpv" = "php54" ];then
 	php_version="$PHP54"
 	php_dir="php54"
     php_rapidly_ver="ver5"
-    php_rapidly_url="$mrocdn_3241"
+    php_rapidly_url="$mpcdn_3841"
 	install_libicu
 elif [ "$intallphpv" = "php55" ];then
 	php_version="$PHP55"
 	php_dir="php55"
     php_rapidly_ver="ver5"
-    php_rapidly_url="$mrocdn_3241"
+    php_rapidly_url="$mpcdn_3841"
 elif [ "$intallphpv" = "php56" ];then
 	php_version="$PHP56"
 	php_dir="php56"
     php_rapidly_ver="ver5"
-    php_rapidly_url="$mrocdn_3241"
+    php_rapidly_url="$mpcdn_3841"
 	install_libicu
 	install_curl
 elif [ "$intallphpv" = "php70" ];then
 	php_version="$PHP70"
 	php_dir="php70"
     php_rapidly_ver="ver7"
-    php_rapidly_url="$mrocdn_3242"
+    php_rapidly_url="$mpcdn_3842"
 	install_libwebp
 elif [ "$intallphpv" = "php71" ];then
 	php_version="$PHP71"
 	php_dir="php71"
     php_rapidly_ver="ver7"
-    php_rapidly_url="$mrocdn_3242"
+    php_rapidly_url="$mpcdn_3842"
 elif [ "$intallphpv" = "php72" ];then
 	php_version="$PHP72"
 	php_dir="php72"
     php_rapidly_ver="ver7"
-    php_rapidly_url="$mrocdn_3242"
+    php_rapidly_url="$mpcdn_3842"
 elif [ "$intallphpv" = "php73" ];then
 	php_version="$PHP73"
 	php_dir="php73"
     php_rapidly_ver="ver7"
-    php_rapidly_url="$mrocdn_3242"
+    php_rapidly_url="$mpcdn_3842"
 	install_libicu
 	install_libzip
 elif [ "$intallphpv" = "php74" ];then
 	php_version="$PHP74"
 	php_dir="php74"
     php_rapidly_ver="ver7"
-    php_rapidly_url="$mrocdn_3242"
+    php_rapidly_url="$mpcdn_3842"
 	install_libicu
 	install_oniguruma
 	install_libzip
@@ -161,7 +161,7 @@ elif [ "$intallphpv" = "php80" ];then
 	php_version="$PHP80"
 	php_dir="php80"
     php_rapidly_ver="ver8"
-    php_rapidly_url="$mrocdn_3243"
+    php_rapidly_url="$mpcdn_3843"
 	install_libicu
 	install_oniguruma
 	install_libzip
@@ -169,7 +169,7 @@ elif [ "$intallphpv" = "php81" ];then
 	php_version="$PHP81"
 	php_dir="php81"
     php_rapidly_ver="ver8"
-    php_rapidly_url="$mrocdn_3243"
+    php_rapidly_url="$mpcdn_3843"
 	install_libicu
 	install_oniguruma
 	install_libzip

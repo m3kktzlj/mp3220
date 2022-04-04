@@ -28,7 +28,7 @@ fi
 ARCH="$OS-x64"
 
 #https://www.cdnbest.com/download/cdnbest/cdnbest-4.6.4-8-x64.tar.gz
-URL="$mrocdn_3224/files/cdnbest/cdnbest-$CDNBEST_VERSION-$ARCH.tar.gz"
+URL="$mpcdn_3824/files/cdnbest/cdnbest-$CDNBEST_VERSION-$ARCH.tar.gz"
 wget $URL -O cdnbest.tar.gz
 ret=$?
 if [ $ret != 0 ] ; then

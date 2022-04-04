@@ -7,7 +7,7 @@ dir02="/usr/local/runner/tgrp-ver"
 dir03="/usr/local/runner/tgrp-tmp"
 dir04="/usr/local/runner/tgrp-log"
 
-source $dir02/RUNNER_9999
+source $dir02/RUNNER_data
 source $dir02/qiangidc_install_url
 source $dir02/qiangidc_install_ver
 
@@ -17,7 +17,7 @@ PMV="$PREFIX/mysql/pm$PHPMY"
 DFILE="phpMyAdmin-$PHPMYADMIN-all-languages"
 
 cd $PREFIX
-wget $mrocdn_3226/files/phpMyAdmin/$DFILE.tar.gz -O $DFILE.tar.gz
+wget $mpcdn_3826/files/phpMyAdmin/$DFILE.tar.gz -O $DFILE.tar.gz
 tar zxf $DFILE.tar.gz
 rm -rf $PREFIX/mysql
 mv -f $PREFIX/$DFILE $PREFIX/mysql

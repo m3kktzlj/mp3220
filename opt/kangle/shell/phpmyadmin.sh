@@ -17,7 +17,7 @@ PMV="$PREFIX/mysql/pm$PHPMY"
 DFILE="phpMyAdmin-$PHPMYADMIN-all-languages"
 
 cd $PREFIX
-wget $mrocdn_3226/files/phpMyAdmin/$DFILE.tar.gz -O $DFILE.tar.gz
+wget $mpcdn_3826/files/phpMyAdmin/$DFILE.tar.gz -O $DFILE.tar.gz
 tar zxf $DFILE.tar.gz
 rm -rf $PREFIX/mysql
 mv -f $PREFIX/$DFILE $PREFIX/mysql
@@ -26,7 +26,7 @@ rm -f $DFILE.tar.gz
 find $PREFIX/mysql/ -type f -print |xargs chmod 644;
 find $PREFIX/mysql/ -type d -print |xargs chmod 755;
 
-wget -q $mrocdn_2231/opt/kangle/config/dbadmin.xml -O /vhs/kangle/ext/dbadmin.xml
+wget -q $mpcdn_2220/opt/kangle/config/dbadmin.xml -O /vhs/kangle/ext/dbadmin.xml
 if [ -f /vhs/kangle/ext/php73/bin/php ] ; then
 	sed -i "s/cmd:php56/cmd:php73/" /vhs/kangle/ext/dbadmin.xml
 fi

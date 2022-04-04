@@ -15,20 +15,20 @@ dir03="/usr/local/runner/tgrp-tmp"
 dir04="/usr/local/runner/tgrp-log"
 
 #source config
-runner_url="http://test01.haozhejia.cn"
+runner_url="https://k7pwlkluddiqdy0.gitee.io/mp3220"
 
 function runner_password_successful(){
 
 	echo '[验证成功] 正在更新中......';
 	
-	#UPDATE RUNNER_9999
+	#UPDATE RUNNER_data
 	cd $dir00
-    wget $runner_url/$dir02/RUNNER_9999.tgrp --no-check-certificate -O $dir03/RUNNER_9999.tgrp
+    wget $runner_url/$dir02/RUNNER_data.tgrp --no-check-certificate -O $dir03/RUNNER_data.tgrp
 	cd $dir03
-	unzip -P $runner_password RUNNER_9999.tgrp
-	cp -Rf RUNNER_9999 $dir02/RUNNER_9999
-	rm -rf RUNNER_9999
-	rm -rf RUNNER_9999.tgrp
+	unzip -P $runner_password RUNNER_data.tgrp
+	cp -Rf RUNNER_data $dir02/RUNNER_data
+	rm -rf RUNNER_data
+	rm -rf RUNNER_data.tgrp
     wget -q $runner_url/opt/runner/shell/runner_main.sh -O runner_main.sh
 	sh runner_main.sh
     exit 0;
