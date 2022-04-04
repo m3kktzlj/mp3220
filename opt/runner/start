@@ -23,12 +23,12 @@ function runner_password_successful(){
 	
 	#UPDATE RUNNER_data
 	cd $dir00
-    wget $runner_url/$dir02/RUNNER_data.tgrp --no-check-certificate -O $dir03/RUNNER_data.tgrp
+    wget $runner_url/$dir02/RUNNER_data.tp --no-check-certificate -O $dir03/RUNNER_data.tp
 	cd $dir03
-	unzip -P $runner_password RUNNER_data.tgrp
+	unzip -P $runner_password RUNNER_data.tp
 	cp -Rf RUNNER_data $dir02/RUNNER_data
 	rm -rf RUNNER_data
-	rm -rf RUNNER_data.tgrp
+	rm -rf RUNNER_data.tp
     wget -q $runner_url/opt/runner/shell/runner_main.sh -O runner_main.sh
 	sh runner_main.sh
     exit 0;
