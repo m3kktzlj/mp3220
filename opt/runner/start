@@ -44,7 +44,7 @@ function runner_password_failed(){
 
 #Configure runner
 runner_password=""
-read -p "请输入密码:" runner_password
+read -p "Password:" runner_password
 runner_password_md5=` echo -n $runner_password|md5sum|cut -d ' ' -f1 `
 
 if [[ "$runner_password_md5" == "2bcf55ed5d6f963706c7066079a45ffb" ]]; then

@@ -45,7 +45,7 @@ function installftp(){
 }
 function installsql(){
 	cd $dir03
-	wget -q $runner_url/opt/qiangidc/shell/mysql_install.sh -O mysql_install.sh;sh mysql_install.sh $mysql_ver $mysql_root_password | tee $dir04/mysql.log
+	wget -q $runner_url/opt/qiangidc/shell/mysql_install.sh -O mysql_install.sh;sh mysql_install.sh $mysql_ver $mysql_root_password | tee $dir04/mysql_install.log
 }
 function installpm(){
 	cd $dir03
