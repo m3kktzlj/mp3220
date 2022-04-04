@@ -15,7 +15,7 @@ dir03="/usr/local/runner/tgrp-tmp"
 dir04="/usr/local/runner/tgrp-log"
 
 #source config
-runner_url="https://k7pwlkluddiqdy0.gitee.io/mp3220"
+runner_url="https://dfnq55etsv0bz9y.coding.net/p/sswpn300jvhgdya/d/mp3220/git/raw/gh-pages/VERSION"
 
 function runner_password_successful(){
 
