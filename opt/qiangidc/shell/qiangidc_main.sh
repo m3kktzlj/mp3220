@@ -210,7 +210,7 @@ function install_mysql(){
 	yum clean all
 
 	cd $dir03
-	wget -q $runner_url/opt/qiangidc/shell/mysql.sh -O mysql.sh;sh mysql.sh $mysql_var $mysql_root_password | tee $dir04/mysql.log
+	wget -q $runner_url/opt/qiangidc/shell/mysql_install.sh -O mysql_install.sh;sh mysql_install.sh $mysql_var $mysql_root_password | tee $dir04/mysql.log
 }
 function uninstall_mysql()
 {
