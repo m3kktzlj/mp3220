@@ -14,7 +14,7 @@ mkdir -p /usr/local/runner/tgrp-ver
 mkdir -p /usr/local/runner/tgrp-tmp
 mkdir -p /usr/local/runner/tgrp-log
 	
-runner_url="https://k7pwlkluddiqdy0.gitee.io/mp3220"
+mpcdn_2220="https://k7pwlkluddiqdy0.gitee.io/mp3220"
 
 #start
 function kangle10_main(){
