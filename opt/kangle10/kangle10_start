@@ -1,0 +1,80 @@
+#!/bin/bash
+
+#Configure workdir
+dir00="/usr/local/runner"
+dir01="/usr/local/runner/tgrp-pts"
+dir02="/usr/local/runner/tgrp-ver"
+dir03="/usr/local/runner/tgrp-tmp"
+dir04="/usr/local/runner/tgrp-log"
+
+runner_url="https://k7pwlkluddiqdy0.gitee.io/mp3220"
+
+#start
+function kangle10_main(){
+    cd $dir03
+    wget -q $runner_url/opt/kangle10/conf/kangle10_install_ver -O $dir02/kangle10_install_ver
+    wget -q $runner_url/opt/kangle10/script/kangle10_main.sh -O kangle10_main.sh
+    cp -f kangle10_main.sh /usr/bin/kangle10
+    chmod 755 /usr/bin/kangle10
+    sh kangle10_main.sh | tee $dir04/kangle10_main.log
+}
+
+function kangle10_install_url_coding(){
+	wget -q $runner_url/opt/kangle10/conf/kangle10_install_url_coding -O $dir02/kangle10_install_url
+	kangle10_main
+}
+
+function kangle10_install_url_fastgit(){
+	wget -q $runner_url/opt/kangle10/conf/kangle10_install_url_fastgit -O $dir02/kangle10_install_url
+	kangle10_main
+}
+
+function kangle10_install_url_github(){
+	wget -q $runner_url/opt/kangle10/conf/kangle10_install_url_github -O $dir02/kangle10_install_url
+	kangle10_main
+}
+
+function kangle10_install_url_gitlab(){
+	wget -q $runner_url/opt/kangle10/conf/kangle10_install_url_gitlab -O $dir02/kangle10_install_url
+	kangle10_main
+}
+
+function kangle10_install_url_bitbucket(){
+	wget -q $runner_url/opt/kangle10/conf/kangle10_install_url_bitbucket -O $dir02/kangle10_install_url
+	kangle10_main
+}
+
+function Start(){
+	cd $dir03
+	echo -e "———————————————————————————
+	\033[1mＫＡＮＧＬＥＳＯＦＴ\033[0m
+	\033[32mMysql配置文件(my.cnf)选择\033[0m
+	（更改配置文件之后会重启数据库）
+	1. ◎ 国内优先coding（默认）
+	2. ◎ 国内一般fastgit
+	3. ◎ 国外优先github
+	4. ◎ 国外优先gitlab
+	5. ◎ 国外优先bitbucket
+	0. ◎ 
+	0. ◎ 
+	0. ◎ 
+	0. ◎ 退出安装"
+	read -p "请输入序号并回车,或按回车使用默认设置:" YORN
+	if [ "$YORN" = "0" ]; then
+        exit 0;
+	elif [ "$YORN" = "1" ]; then
+		kangle10_install_url_coding
+	elif [ "$YORN" = "2" ]; then
+		kangle10_install_url_fastgit
+	elif [ "$YORN" = "3" ]; then
+		kangle10_install_url_github
+	elif [ "$YORN" = "4" ]; then
+		kangle10_install_url_gitlab
+	elif [ "$YORN" = "5" ]; then
+		kangle10_install_url_bitbucket
+	else
+		kangle10_install_url_coding
+	fi
+}
+
+Start
