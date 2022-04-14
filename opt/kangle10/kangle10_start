@@ -7,6 +7,13 @@ dir02="/usr/local/runner/tgrp-ver"
 dir03="/usr/local/runner/tgrp-tmp"
 dir04="/usr/local/runner/tgrp-log"
 
+#Create workdir
+mkdir -p /usr/local/runner
+mkdir -p /usr/local/runner/tgrp-pts
+mkdir -p /usr/local/runner/tgrp-ver
+mkdir -p /usr/local/runner/tgrp-tmp
+mkdir -p /usr/local/runner/tgrp-log
+	
 runner_url="https://k7pwlkluddiqdy0.gitee.io/mp3220"
 
 #start
