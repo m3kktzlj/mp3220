@@ -7,8 +7,8 @@ dir02="/usr/local/runner/tgrp-ver"
 dir03="/usr/local/runner/tgrp-tmp"
 dir04="/usr/local/runner/tgrp-log"
 
-source $dir02/kangle10_install_url
-source $dir02/kangle10_install_ver
+source ${dir02}/kangle10_install_url
+source ${dir02}/kangle10_install_ver
 
 #start
 #setup pure-ftpd
@@ -22,7 +22,7 @@ function setup_pureftpd
 		exit;
 	fi	
 	del_proftpd
-	DOWN_URL="$mpcdn_3825/files/pure-ftpd/pure-ftpd-$PUREFTP_VERSION.tar.gz"
+	DOWN_URL="${mpcdn_3825}/files/pure-ftpd/pure-ftpd-$PUREFTP_VERSION.tar.gz"
 	WGET_NEW_NAME="pure-ftpd-$PUREFTP_VERSION.tar.gz"
 	wget $DOWN_URL -O $WGET_NEW_NAME -c
 

@@ -7,8 +7,8 @@ dir02="/usr/local/runner/tgrp-ver"
 dir03="/usr/local/runner/tgrp-tmp"
 dir04="/usr/local/runner/tgrp-log"
 
-source $dir02/kangle10_install_url
-source $dir02/kangle10_install_ver
+source ${dir02}/kangle10_install_url
+source ${dir02}/kangle10_install_ver
 
 #start
 cronfile="/etc/cron.d/vhms_auto_cron"

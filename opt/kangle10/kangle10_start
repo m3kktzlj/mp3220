@@ -18,41 +18,41 @@ runner_url="https://k7pwlkluddiqdy0.gitee.io/mp3220"
 
 #start
 function kangle10_main(){
-    cd $dir03
-    wget -q $runner_url/opt/kangle10/conf/kangle10_install_ver -O $dir02/kangle10_install_ver
-    wget -q $runner_url/opt/kangle10/script/kangle10_main.sh -O kangle10_main.sh
+    cd ${dir03}
+    wget -q ${mpcdn_2220}/opt/kangle10/conf/kangle10_install_ver -O ${dir02}/kangle10_install_ver
+    wget -q ${mpcdn_2220}/opt/kangle10/script/kangle10_main.sh -O kangle10_main.sh
     cp -f kangle10_main.sh /usr/bin/kangle10
     chmod 755 /usr/bin/kangle10
-    sh kangle10_main.sh | tee $dir04/kangle10_main.log
+    sh kangle10_main.sh | tee ${dir04}/kangle10_main.log
 }
 
 function kangle10_install_url_coding(){
-	wget -q $runner_url/opt/kangle10/conf/kangle10_install_url_coding -O $dir02/kangle10_install_url
+	wget -q ${mpcdn_2220}/opt/kangle10/conf/kangle10_install_url_coding -O ${dir02}/kangle10_install_url
 	kangle10_main
 }
 
 function kangle10_install_url_fastgit(){
-	wget -q $runner_url/opt/kangle10/conf/kangle10_install_url_fastgit -O $dir02/kangle10_install_url
+	wget -q ${mpcdn_2220}/opt/kangle10/conf/kangle10_install_url_fastgit -O ${dir02}/kangle10_install_url
 	kangle10_main
 }
 
 function kangle10_install_url_github(){
-	wget -q $runner_url/opt/kangle10/conf/kangle10_install_url_github -O $dir02/kangle10_install_url
+	wget -q ${mpcdn_2220}/opt/kangle10/conf/kangle10_install_url_github -O ${dir02}/kangle10_install_url
 	kangle10_main
 }
 
 function kangle10_install_url_gitlab(){
-	wget -q $runner_url/opt/kangle10/conf/kangle10_install_url_gitlab -O $dir02/kangle10_install_url
+	wget -q ${mpcdn_2220}/opt/kangle10/conf/kangle10_install_url_gitlab -O ${dir02}/kangle10_install_url
 	kangle10_main
 }
 
 function kangle10_install_url_bitbucket(){
-	wget -q $runner_url/opt/kangle10/conf/kangle10_install_url_bitbucket -O $dir02/kangle10_install_url
+	wget -q ${mpcdn_2220}/opt/kangle10/conf/kangle10_install_url_bitbucket -O ${dir02}/kangle10_install_url
 	kangle10_main
 }
 
 function Start(){
-	cd $dir03
+	cd ${dir03}
 	echo -e "———————————————————————————
 	\033[1mＫＡＮＧＬＥＳＯＦＴ\033[0m
 	\033[32mMysql配置文件(my.cnf)选择\033[0m

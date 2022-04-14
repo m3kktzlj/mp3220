@@ -7,8 +7,8 @@ dir02="/usr/local/runner/tgrp-ver"
 dir03="/usr/local/runner/tgrp-tmp"
 dir04="/usr/local/runner/tgrp-log"
 
-source $dir02/kangle10_install_url
-source $dir02/kangle10_install_ver
+source ${dir02}/kangle10_install_url
+source ${dir02}/kangle10_install_ver
 
 #start
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
@@ -71,14 +71,14 @@ if [ ! -f /etc/redis/redis.conf ];then
 fi
 
 if [ "$release" == "6" ];then
-	wget -O /etc/init.d/redis $runner_url/opt/kangle10/conf/redis/redis.init
+	wget -O /etc/init.d/redis ${mpcdn_2220}/opt/kangle10/conf/redis/redis.init
 	chmod +x /etc/init.d/redis
 
 	chkconfig --add redis
 	chkconfig redis on
 	service redis start
 else
-	wget -O /usr/lib/systemd/system/redis.service $runner_url/opt/kangle10/conf/redis/redis.service
+	wget -O /usr/lib/systemd/system/redis.service ${mpcdn_2220}/opt/kangle10/conf/redis/redis.service
 
 	systemctl daemon-reload
 	systemctl enable redis

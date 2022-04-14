@@ -7,15 +7,15 @@ dir02="/usr/local/runner/tgrp-ver"
 dir03="/usr/local/runner/tgrp-tmp"
 dir04="/usr/local/runner/tgrp-log"
 
-source $dir02/kangle10_install_url
-source $dir02/kangle10_install_ver
+source ${dir02}/kangle10_install_url
+source ${dir02}/kangle10_install_ver
 
 #start
 function install_template(){
 	vfile=$1
 	rm -rf /vhs/kangle/nodewww/webftp/vhost/view/default;
 	rm -f ${vfile}.zip
-	wget $mpcdn_3821/files/view/${vfile}.zip?$RANDOM -O ${vfile}.zip -c;
+	wget ${mpcdn_3821}/files/view/${vfile}.zip?$RANDOM -O ${vfile}.zip -c;
 	unzip -q ${vfile}.zip -d /vhs/kangle/nodewww/webftp/vhost/view;
 	rm -rf /vhs/kangle/nodewww/webftp/framework/templates_c/default/*;
 	echo "————————————————————————————————————————————————————

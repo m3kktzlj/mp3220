@@ -7,8 +7,8 @@ dir02="/usr/local/runner/tgrp-ver"
 dir03="/usr/local/runner/tgrp-tmp"
 dir04="/usr/local/runner/tgrp-log"
 
-source $dir02/kangle10_install_url
-source $dir02/kangle10_install_ver
+source ${dir02}/kangle10_install_url
+source ${dir02}/kangle10_install_ver
 
 #start
 PREFIX="/vhs/kangle"
@@ -69,7 +69,7 @@ function setup_easypanel
 		fi
 	fi
 	# chmod 700 $PREFIX/etc $PREFIX/var $PREFIX/nodewww/data	
-	EASYPANEL_URL="$mpcdn_3823/files/easypanel/easypanel-$EASYPANEL_VERSION-$ARCH-$SYSVERSION.tar.gz"
+	EASYPANEL_URL="${mpcdn_3823}/files/easypanel/easypanel-$EASYPANEL_VERSION-$ARCH-$SYSVERSION.tar.gz"
 	EA_FILE_NAME="easypanel-$EASYPANEL_VERSION-$ARCH-$SYSVERSION.tar.gz"
 	wget $EASYPANEL_URL -O $EA_FILE_NAME -c
 	if [ $? != 0 ] ; then

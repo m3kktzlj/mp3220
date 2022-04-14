@@ -7,8 +7,8 @@ dir02="/usr/local/runner/tgrp-ver"
 dir03="/usr/local/runner/tgrp-tmp"
 dir04="/usr/local/runner/tgrp-log"
 
-source $dir02/kangle10_install_url
-source $dir02/kangle10_install_ver
+source ${dir02}/kangle10_install_url
+source ${dir02}/kangle10_install_ver
 
 #start
 PREFIX="/vhs/kangle"
@@ -27,7 +27,7 @@ fi
 ARCH="$OS-x64"
 
 #https://www.cdnbest.com/download/cdnbest/cdnbest-4.6.4-8-x64.tar.gz
-URL="$mpcdn_3824/files/cdnbest/cdnbest-$CDNBEST_VERSION-$ARCH.tar.gz"
+URL="${mpcdn_3824}/files/cdnbest/cdnbest-$CDNBEST_VERSION-$ARCH.tar.gz"
 wget $URL -O cdnbest.tar.gz
 ret=$?
 if [ $ret != 0 ] ; then

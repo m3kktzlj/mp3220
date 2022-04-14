@@ -7,8 +7,8 @@ dir02="/usr/local/runner/tgrp-ver"
 dir03="/usr/local/runner/tgrp-tmp"
 dir04="/usr/local/runner/tgrp-log"
 
-source $dir02/kangle10_install_url
-source $dir02/kangle10_install_ver
+source ${dir02}/kangle10_install_url
+source ${dir02}/kangle10_install_ver
 
 #start
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
@@ -63,7 +63,7 @@ function Install_curl()
 {
 if ! openssl version | grep -i "openssl 1.0"; then
 	if [ ! -f /usr/local/openssl-1.0.2u/bin/openssl ]; then
-		wget $mpcdn_3821/files/completed/openssl-1.0.2u.tar.gz -O openssl-1.0.2u.tar.gz;
+		wget ${mpcdn_3821}/files/completed/openssl-1.0.2u.tar.gz -O openssl-1.0.2u.tar.gz;
 		tar -zxvf openssl-1.0.2u.tar.gz;
 		cd openssl-1.0.2u;
 		./config -fPIC --prefix=/usr/local/openssl-1.0.2u --openssldir=/usr/local/openssl-1.0.2u;
@@ -72,7 +72,7 @@ if ! openssl version | grep -i "openssl 1.0"; then
 	fi;
 	with_openssl='--with-openssl=/usr/local/openssl-1.0.2u';
 	if [ ! -f /usr/local/curl-7.61.1/bin/curl ]; then
-		wget $mpcdn_3821/files/completed/curl-7.61.1.tar.bz2 -O curl-7.61.1.tar.bz2;
+		wget ${mpcdn_3821}/files/completed/curl-7.61.1.tar.bz2 -O curl-7.61.1.tar.bz2;
 		tar -xvf curl-7.61.1.tar.bz2;
 		cd curl-7.61.1;
 		./configure --prefix=/usr/local/curl-7.61.1 --with-ssl=/usr/local/openssl-1.0.2u --enable-ldap --enable-ldaps;
@@ -90,7 +90,7 @@ if [ "$release" = "8" ]; then
 else
 	if [ ! -d /usr/local/lib/pkgconfig ]; then
 		yum -y remove libzip libzip-devel
-		wget --no-check-certificate -O libzip-1.3.2.tar.gz $mpcdn_3821/files/completed/libzip-1.3.2.tar.gz
+		wget --no-check-certificate -O libzip-1.3.2.tar.gz ${mpcdn_3821}/files/completed/libzip-1.3.2.tar.gz
 		tar xvf libzip-1.3.2.tar.gz
 		cd libzip-1.3.2
 		./configure
@@ -110,12 +110,12 @@ function Install_oniguruma()
 
 function Download_file()
 {
-	wget $mpcdn_3831/files/php/compile/php-${php_version}.tar.bz2 -O php-${php_version}.tar.bz2
+	wget ${mpcdn_3831}/files/php/compile/php-${php_version}.tar.bz2 -O php-${php_version}.tar.bz2
 	tar xjf php-${php_version}.tar.bz2
 	if [ "${PHP_VER}" == "52" ];then
 		yum -y install patch
 		cd php-${php_version}
-		wget $runner_url/opt/kangle10/conf/php/php5.3patch -O php5.3patch
+		wget ${mpcdn_2220}/opt/kangle10/conf/php/php5.3patch -O php5.3patch
 		patch -p1 < ./php5.3patch
 		cd ..
 	elif [ "${PHP_VER}" == "53" ];then
@@ -167,10 +167,10 @@ function Install_PHP()
 	make -j $Cpunum
 	make install
 
-	wget -q $runner_url/opt/kangle10/conf/php/php${PHP_VER}.xml -O $PREFIX/config.xml
-	wget -q $runner_url/opt/kangle10/conf/php/php${PHP_VER}.ini -O $PREFIX/php-templete.ini
+	wget -q ${mpcdn_2220}/opt/kangle10/conf/php/php${PHP_VER}.xml -O $PREFIX/config.xml
+	wget -q ${mpcdn_2220}/opt/kangle10/conf/php/php${PHP_VER}.ini -O $PREFIX/php-templete.ini
 	if [ "${PHP_VER}" == "56" ];then
-		wget $runner_url/opt/kangle10/conf/php/php-node.ini -O $PREFIX/etc/php-node.ini
+		wget ${mpcdn_2220}/opt/kangle10/conf/php/php-node.ini -O $PREFIX/etc/php-node.ini
 	fi
 }
 
@@ -183,7 +183,7 @@ function Install_zend()
 		zip_file="ZendGuardLoader-${ZEND_ARCH}-${PHP_VER_D}.zip";
 		o_file="ZendGuardLoader.so";
 	fi
-	wget $mpcdn_3821/files/Zend/${zip_file} -O ${zip_file}
+	wget ${mpcdn_3821}/files/Zend/${zip_file} -O ${zip_file}
 	unzip -o ${zip_file}
 	mkdir -p $PREFIX/zend
 	rm -f $PREFIX/zend/${o_file}
@@ -194,7 +194,7 @@ function Install_sourceguardian()
 {
 	zip_file="ixed-${ZEND_ARCH}-${PHP_VER_D}.zip"
 	o_file="ixed.${PHP_VER_D}.lin"
-	wget $mpcdn_3821/files/ixed/${zip_file} -O ${zip_file}
+	wget ${mpcdn_3821}/files/ixed/${zip_file} -O ${zip_file}
 	unzip ${zip_file}
 	mkdir -p $PREFIX/ixed
 	rm -f $PREFIX/ixed/${o_file}
@@ -205,7 +205,7 @@ function Install_ioncube()
 {
 	zip_file="ioncube-${ZEND_ARCH}-${PHP_VER_D}.zip"
 	o_file="ioncube_loader_lin_${PHP_VER_D}.so"
-	wget $mpcdn_3821/files/ioncube/${zip_file} -O ${zip_file}
+	wget ${mpcdn_3821}/files/ioncube/${zip_file} -O ${zip_file}
 	unzip ${zip_file}
 	mkdir -p $PREFIX/ioncube
 	rm -f $PREFIX/ioncube/${o_file}

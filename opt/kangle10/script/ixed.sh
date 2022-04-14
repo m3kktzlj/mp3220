@@ -7,8 +7,8 @@ dir02="/usr/local/runner/tgrp-ver"
 dir03="/usr/local/runner/tgrp-tmp"
 dir04="/usr/local/runner/tgrp-log"
 
-source $dir02/kangle10_install_url
-source $dir02/kangle10_install_ver
+source ${dir02}/kangle10_install_url
+source ${dir02}/kangle10_install_ver
 
 #start
 PREFIX="/vhs/kangle/ext"
@@ -43,7 +43,7 @@ elif [ "$line" = "php80" ];then
 fi
 if [ -d $PREFIX/$line ];then
 file="ixed-$SYS-${php_version}.zip"
-wget -c $mpcdn_3821/files/ixed/$file -O $file
+wget -c ${mpcdn_3821}/files/ixed/$file -O $file
 unzip $file
 mkdir -p $PREFIX/$line/ixed
 rm -rf $PREFIX/$line/ixed/ixed.${php_version}.lin
