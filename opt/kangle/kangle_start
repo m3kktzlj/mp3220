@@ -8,9 +8,6 @@ dir02="./kangle_install_log"
 mkdir -p ./kangle_install_tmp
 mkdir -p ./kangle_install_log
 
-source ${dir01}/kangle_install_ver
-source ${dir01}/kangle_install_url
-
 mpcdn_2220="https://k7pwlkluddiqdy0.gitee.io/mp3220"
 
 #start
