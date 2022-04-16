@@ -12,6 +12,7 @@ mpcdn_2220="https://k7pwlkluddiqdy0.gitee.io/mp3220"
 
 #start
 function kangle_main(){
+    cd ${dir01}
     wget -q ${mpcdn_2220}/opt/kangle/conf/kangle_install_ver -O ${dir01}/kangle_install_ver
     wget -q ${mpcdn_2220}/opt/kangle/script/kangle_main.sh -O ${dir01}/kangle_main.sh
     sh kangle_main.sh | tee ${dir02}/kangle_main.log
