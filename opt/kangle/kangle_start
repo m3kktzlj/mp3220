@@ -1,77 +1,25 @@
 #!/bin/bash
-
-#Configure workdir
-dir01="/root/kangle_install_tmp"
-dir02="/root/kangle_install_log"
+opt_kangle="https://k7pwlkluddiqdy0.gitee.io/mp3220"
 
 #Create workdir
-mkdir -p /root/kangle_install_tmp
-mkdir -p /root/kangle_install_log
+cd /root
+mkdir -p ./runner
+mkdir -p ./runner/tgrp-pts
+mkdir -p ./runner/tgrp-ver
+mkdir -p ./runner/tgrp-tmp
+mkdir -p ./runner/tgrp-log
 
-mpcdn_2220="https://k7pwlkluddiqdy0.gitee.io/mp3220"
+#Configure workdir
+dir00="/root/runner"
+dir01="/root/runner/tgrp-pts"
+dir02="/root/runner/tgrp-ver"
+dir03="/root/runner/tgrp-tmp"
+dir04="/root/runner/tgrp-log"
 
-#start
-function kangle_main(){
-    cd ${dir01}
-    wget -q ${mpcdn_2220}/opt/kangle/conf/kangle_install_ver -O ${dir01}/kangle_install_ver
-    wget -q ${mpcdn_2220}/opt/kangle/script/kangle_main.sh -O ${dir01}/kangle_main.sh
-    sh kangle_main.sh | tee ${dir02}/kangle_main.log
-}
-
-function kangle_install_url_coding(){
-	wget -q ${mpcdn_2220}/opt/kangle/conf/kangle_install_url_coding -O ${dir01}/kangle_install_url
-	kangle_main
-}
-
-function kangle_install_url_fastgit(){
-	wget -q ${mpcdn_2220}/opt/kangle/conf/kangle_install_url_fastgit -O ${dir01}/kangle_install_url
-	kangle_main
-}
-
-function kangle_install_url_github(){
-	wget -q ${mpcdn_2220}/opt/kangle/conf/kangle_install_url_github -O ${dir01}/kangle_install_url
-	kangle_main
-}
-
-function kangle_install_url_gitlab(){
-	wget -q ${mpcdn_2220}/opt/kangle/conf/kangle_install_url_gitlab -O ${dir01}/kangle_install_url
-	kangle_main
-}
-
-function kangle_install_url_bitbucket(){
-	wget -q ${mpcdn_2220}/opt/kangle/conf/kangle_install_url_bitbucket -O ${dir01}/kangle_install_url
-	kangle_main
-}
-
-function Start(){
-	echo -e "———————————————————————————
-	\033[1mＫＡＮＧＬＥＳＯＦＴ\033[0m
-	\033[32mMysql配置文件(my.cnf)选择\033[0m
-	1. ◎ 国内优先coding（默认）
-	2. ◎ 国内一般fastgit
-	3. ◎ 国外优先github
-	4. ◎ 国外优先gitlab
-	5. ◎ 国外优先bitbucket
-	0. ◎ 
-	0. ◎ 
-	0. ◎ 
-	0. ◎ 退出安装"
-	read -p "请输入序号并回车,或按回车使用默认设置:" YORN
-	if [ "$YORN" = "0" ]; then
-        exit 0;
-	elif [ "$YORN" = "1" ]; then
-		kangle_install_url_coding
-	elif [ "$YORN" = "2" ]; then
-		kangle_install_url_fastgit
-	elif [ "$YORN" = "3" ]; then
-		kangle_install_url_github
-	elif [ "$YORN" = "4" ]; then
-		kangle_install_url_gitlab
-	elif [ "$YORN" = "5" ]; then
-		kangle_install_url_bitbucket
-	else
-		kangle_install_url_coding
-	fi
-}
-
-Start
+cd $dir03
+wget -q $opt_kangle/opt/kangle/config/kangle_install_url -O $dir02/kangle_install_url
+wget -q $opt_kangle/opt/kangle/config/kangle_install_ver -O $dir02/kangle_install_ver
+wget -q $opt_kangle/opt/kangle/shell/main.sh -O main.sh
+cp -f main.sh /usr/bin/kanglesh
+chmod 755 /usr/bin/kanglesh
+sh main.sh | tee $dir04/main.log
