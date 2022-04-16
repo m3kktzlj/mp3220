@@ -1,9 +1,12 @@
 #!/bin/bash
 
 #Configure workdir
+dir01="/root/kangle_install_tmp"
+dir02="/root/kangle_install_log"
 
-source kangle_install_ver
-source kangle_install_url
+#Source Config
+source ${dir01}/kangle_install_ver
+source ${dir01}/kangle_install_url
 
 #start
 PREFIX="/vhs/kangle/ext"
@@ -35,7 +38,7 @@ elif [ "$line" = "php74" ];then
 fi
 if [ -d $PREFIX/$line ];then
 file="ioncube-$SYS-${php_version}.zip"
-wget -c ${mpcdn_3821}/files/ioncube/$file -O $file
+wget -c ${mpcdn_3821}/files/ioncube/$file -O ${dir01}/$file
 unzip $file
 mkdir -p $PREFIX/$line/ioncube
 mv -f ioncube_loader_lin_${php_version}.so $PREFIX/$line/ioncube/ioncube_loader_lin_${php_version}.so

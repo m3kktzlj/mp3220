@@ -1,9 +1,12 @@
 #!/bin/bash
 
 #Configure workdir
+dir01="/root/kangle_install_tmp"
+dir02="/root/kangle_install_log"
 
-source kangle_install_ver
-source kangle_install_url
+#Source Config
+source ${dir01}/kangle_install_ver
+source ${dir01}/kangle_install_url
 
 #start
 #setup pure-ftpd
@@ -19,7 +22,7 @@ function setup_pureftpd
 	del_proftpd
 	DOWN_URL="${mpcdn_3825}/files/pure-ftpd/pure-ftpd-$PUREFTP_VERSION.tar.gz"
 	WGET_NEW_NAME="pure-ftpd-$PUREFTP_VERSION.tar.gz"
-	wget $DOWN_URL -O $WGET_NEW_NAME -c
+	wget $DOWN_URL -O ${dir01}/$WGET_NEW_NAME -c
 
 	tar xzf $WGET_NEW_NAME
 	cd pure-ftpd-$PUREFTP_VERSION

@@ -1,38 +1,44 @@
 #!/bin/bash
 
 #Configure workdir
+dir01="/root/kangle_install_tmp"
+dir02="/root/kangle_install_log"
+
+#Create workdir
+mkdir -p /root/kangle_install_tmp
+mkdir -p /root/kangle_install_log
 
 mpcdn_2220="https://k7pwlkluddiqdy0.gitee.io/mp3220"
 
 #start
 function kangle_main(){
-    wget -q ${mpcdn_2220}/opt/kangle/conf/kangle_install_ver -O kangle_install_ver
-    wget -q ${mpcdn_2220}/opt/kangle/script/kangle_main.sh -O kangle_main.sh
-    sh kangle_main.sh | tee kangle_main.log
+    wget -q ${mpcdn_2220}/opt/kangle/conf/kangle_install_ver -O ${dir01}/kangle_install_ver
+    wget -q ${mpcdn_2220}/opt/kangle/script/kangle_main.sh -O ${dir01}/kangle_main.sh
+    sh kangle_main.sh | tee ${dir02}/kangle_main.log
 }
 
 function kangle_install_url_coding(){
-	wget -q ${mpcdn_2220}/opt/kangle/conf/kangle_install_url_coding -O kangle_install_url
+	wget -q ${mpcdn_2220}/opt/kangle/conf/kangle_install_url_coding -O ${dir01}/kangle_install_url
 	kangle_main
 }
 
 function kangle_install_url_fastgit(){
-	wget -q ${mpcdn_2220}/opt/kangle/conf/kangle_install_url_fastgit -O kangle_install_url
+	wget -q ${mpcdn_2220}/opt/kangle/conf/kangle_install_url_fastgit -O ${dir01}/kangle_install_url
 	kangle_main
 }
 
 function kangle_install_url_github(){
-	wget -q ${mpcdn_2220}/opt/kangle/conf/kangle_install_url_github -O kangle_install_url
+	wget -q ${mpcdn_2220}/opt/kangle/conf/kangle_install_url_github -O ${dir01}/kangle_install_url
 	kangle_main
 }
 
 function kangle_install_url_gitlab(){
-	wget -q ${mpcdn_2220}/opt/kangle/conf/kangle_install_url_gitlab -O kangle_install_url
+	wget -q ${mpcdn_2220}/opt/kangle/conf/kangle_install_url_gitlab -O ${dir01}/kangle_install_url
 	kangle_main
 }
 
 function kangle_install_url_bitbucket(){
-	wget -q ${mpcdn_2220}/opt/kangle/conf/kangle_install_url_bitbucket -O kangle_install_url
+	wget -q ${mpcdn_2220}/opt/kangle/conf/kangle_install_url_bitbucket -O ${dir01}/kangle_install_url
 	kangle_main
 }
 

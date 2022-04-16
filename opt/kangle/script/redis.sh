@@ -1,9 +1,12 @@
 #!/bin/bash
 
 #Configure workdir
+dir01="/root/kangle_install_tmp"
+dir02="/root/kangle_install_log"
 
-source kangle_install_ver
-source kangle_install_url
+#Source Config
+source ${dir01}/kangle_install_ver
+source ${dir01}/kangle_install_url
 
 #start
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
@@ -34,7 +37,7 @@ if [ -z "${VM_OVERCOMMIT_MEMORY}" ] && [ -z "${NET_CORE_SOMAXCONN}" ];then
 	sysctl -p
 fi
 
-wget -O redis-$redis_version.tar.gz http://download.redis.io/releases/redis-$redis_version.tar.gz
+wget -O ${dir01}/redis-$redis_version.tar.gz http://download.redis.io/releases/redis-$redis_version.tar.gz
 tar zxvf redis-$redis_version.tar.gz
 cd redis-$redis_version
 make && make install
@@ -66,14 +69,14 @@ if [ ! -f /etc/redis/redis.conf ];then
 fi
 
 if [ "$release" == "6" ];then
-	wget -O /etc/init.d/redis ${mpcdn_2220}/opt/kangle/conf/redis/redis.init
+	wget -O ${dir01}//etc/init.d/redis ${mpcdn_2220}/opt/kangle/conf/redis/redis.init
 	chmod +x /etc/init.d/redis
 
 	chkconfig --add redis
 	chkconfig redis on
 	service redis start
 else
-	wget -O /usr/lib/systemd/system/redis.service ${mpcdn_2220}/opt/kangle/conf/redis/redis.service
+	wget -O ${dir01}//usr/lib/systemd/system/redis.service ${mpcdn_2220}/opt/kangle/conf/redis/redis.service
 
 	systemctl daemon-reload
 	systemctl enable redis
@@ -101,7 +104,7 @@ if [ ! -f /usr/local/bin/redis-server ];then
 	exit 1;
 fi
 
-wget -O redis-$redis_version.tar.gz http://download.redis.io/releases/redis-$redis_version.tar.gz
+wget -O ${dir01}/redis-$redis_version.tar.gz http://download.redis.io/releases/redis-$redis_version.tar.gz
 tar zxvf redis-$redis_version.tar.gz
 cd redis-$redis_version
 make

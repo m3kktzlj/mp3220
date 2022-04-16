@@ -1,9 +1,12 @@
 #!/bin/bash
 
 #Configure workdir
+dir01="/root/kangle_install_tmp"
+dir02="/root/kangle_install_log"
 
-source kangle_install_ver
-source kangle_install_url
+#Source Config
+source ${dir01}/kangle_install_ver
+source ${dir01}/kangle_install_url
 
 #start
 install_mysql=$1
@@ -118,43 +121,43 @@ echo -e "
 if [ "$OS6" = "$centos6" ];then
 	yum_repos_s=`ls /etc/yum.repos.d | wc -l`;
 	if [ "$yum_repos_s" == '0' ]; then
-		wget -q ${mpcdn_2220}/etc/yum.repos.d/Centos-6.repo -O /etc/yum.repos.d/CentOS-Base.repo
+		wget -q ${mpcdn_2220}/etc/yum.repos.d/Centos-6.repo -O ${dir01}//etc/yum.repos.d/CentOS-Base.repo
 	fi;
 	epel_repos_s=`ls /etc/yum.repos.d | grep epel -i | wc -l`;
 	if [ "$epel_repos_s" == '0' ]; then
 		rpm -ivh ${mpcdn_2220}/etc/yum.repos.d/epel-release-latest-6.noarch.rpm --nodeps --force
-		wget -q ${mpcdn_2220}/etc/yum.repos.d/epel-6.repo -O /etc/yum.repos.d/epel.repo
+		wget -q ${mpcdn_2220}/etc/yum.repos.d/epel-6.repo -O ${dir01}//etc/yum.repos.d/epel.repo
 	fi;
 	rpm -ivh ${mpcdn_2220}/etc/yum.repos.d/mysql-community-release-el6-7.noarch.rpm --nodeps --force
 	if [ "$mysql_ver" = "7" ]; then
-		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-7.repo -O /etc/yum.repos.d/mysql-community.repo
+		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-7.repo -O ${dir01}//etc/yum.repos.d/mysql-community.repo
 	elif [ "$mysql_ver" = "8" ]; then
-		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-8.repo -O /etc/yum.repos.d/mysql-community.repo
+		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-8.repo -O ${dir01}//etc/yum.repos.d/mysql-community.repo
 	else
-		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community.repo -O /etc/yum.repos.d/mysql-community.repo
+		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community.repo -O ${dir01}//etc/yum.repos.d/mysql-community.repo
 	fi
 elif [ "$OS7" = "$centos7" ];then
 	yum_repos_s=`ls /etc/yum.repos.d | wc -l`;
 	if [ "$yum_repos_s" == '0' ]; then
-		wget -q ${mpcdn_2220}/etc/yum.repos.d/Centos-7.repo -O /etc/yum.repos.d/CentOS-Base.repo
+		wget -q ${mpcdn_2220}/etc/yum.repos.d/Centos-7.repo -O ${dir01}//etc/yum.repos.d/CentOS-Base.repo
 	fi;
 	epel_repos_s=`ls /etc/yum.repos.d | grep epel -i | wc -l`;
 	if [ "$epel_repos_s" == '0' ]; then
 		rpm -ivh ${mpcdn_2220}/etc/yum.repos.d/epel-release-latest-7.noarch.rpm --nodeps --force
-		wget -q ${mpcdn_2220}/etc/yum.repos.d/epel-7.repo -O /etc/yum.repos.d/epel.repo
+		wget -q ${mpcdn_2220}/etc/yum.repos.d/epel-7.repo -O ${dir01}//etc/yum.repos.d/epel.repo
 	fi;
 	rpm -ivh ${mpcdn_2220}/etc/yum.repos.d/mysql-community-release-el7-7.noarch.rpm --nodeps --force
 	if [ "$mysql_ver" = "7" ]; then
-		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-7.repo -O /etc/yum.repos.d/mysql-community.repo
+		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-7.repo -O ${dir01}//etc/yum.repos.d/mysql-community.repo
 	elif [ "$mysql_ver" = "8" ]; then
-		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-8.repo -O /etc/yum.repos.d/mysql-community.repo
+		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-8.repo -O ${dir01}//etc/yum.repos.d/mysql-community.repo
 	else
-		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community.repo -O /etc/yum.repos.d/mysql-community.repo
+		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community.repo -O ${dir01}//etc/yum.repos.d/mysql-community.repo
 	fi
 elif [ "$OS8" = "$centos8" ];then
 	yum_repos_s=`ls /etc/yum.repos.d | wc -l`;
 	if [ "$yum_repos_s" == '0' ]; then
-		wget -q ${mpcdn_2220}/etc/yum.repos.d/Centos-8.repo -O /etc/yum.repos.d/CentOS-Base.repo
+		wget -q ${mpcdn_2220}/etc/yum.repos.d/Centos-8.repo -O ${dir01}//etc/yum.repos.d/CentOS-Base.repo
 	fi;
 	epel_repos_s=`ls /etc/yum.repos.d | grep epel -i | wc -l`;
 	if [ "$epel_repos_s" == '0' ]; then
@@ -164,7 +167,7 @@ elif [ "$OS8" = "$centos8" ];then
 	yum config-manager --set-enabled powertools
 	if [ "$mysql_ver" = "8" ]; then
 		rpm -ivh ${mpcdn_2220}/etc/yum.repos.d/mysql80-community-release-el8.noarch.rpm --nodeps --force
-		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-8.repo -O /etc/yum.repos.d/mysql-community.repo
+		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-8.repo -O ${dir01}//etc/yum.repos.d/mysql-community.repo
 	fi
 fi
 
@@ -195,7 +198,7 @@ echo -e "
 ————————————————————————————————————————————————————
 您的系统已完成YUM组件安装.正在继续进行Kangle安装
 ————————————————————————————————————————————————————"
-wget -q ${mpcdn_2220}/opt/kangle/script/install.sh -O install.sh;sh install.sh $kangle_ver $kangle_completed $select_ver $mysql_ver $mysql_root_password
+wget -q ${mpcdn_2220}/opt/kangle/script/install.sh -O ${dir01}/install.sh;sh install.sh $kangle_ver $kangle_completed $select_ver $mysql_ver $mysql_root_password
 else
 clear
 echo -e "

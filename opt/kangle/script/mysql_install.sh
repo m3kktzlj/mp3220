@@ -1,9 +1,12 @@
 #!/bin/bash
 
 #Configure workdir
+dir01="/root/kangle_install_tmp"
+dir02="/root/kangle_install_log"
 
-source kangle_install_ver
-source kangle_install_url
+#Source Config
+source ${dir01}/kangle_install_ver
+source ${dir01}/kangle_install_url
 
 #start
 release=`cat /etc/*release /etc/*version 2>/dev/null | grep -Eo '([0-9]{1,2}\.){1,3}' | cut -d '.' -f1 | head -1`;
@@ -54,15 +57,15 @@ fi;
 chkconfig --level 2345 mysqld on
 
 if [ "$mysql_ver" = "8" ]; then
-	wget -q ${mpcdn_2220}/opt/kangle/conf/mysql8.0/my-01.cnf -O /etc/my.cnf
+	wget -q ${mpcdn_2220}/opt/kangle/conf/mysql8.0/my-01.cnf -O ${dir01}//etc/my.cnf
 	if [ "$release" = "8" ]; then
 		mkdir /home/mysql
 		chown -R mysql:mysql /home/mysql
 	fi
 elif [ "$mysql_ver" = "7" ]; then
-	wget -q ${mpcdn_2220}/opt/kangle/conf/mysql5.7/my-01.cnf -O /etc/my.cnf
+	wget -q ${mpcdn_2220}/opt/kangle/conf/mysql5.7/my-01.cnf -O ${dir01}//etc/my.cnf
 else
-	wget -q ${mpcdn_2220}/opt/kangle/conf/mysql5.6/my-01.cnf -O /etc/my.cnf
+	wget -q ${mpcdn_2220}/opt/kangle/conf/mysql5.6/my-01.cnf -O ${dir01}//etc/my.cnf
 fi
 
 rm -f /home/mysql/ibdata1
@@ -71,4 +74,4 @@ rm -f /home/mysql/ib_logfile0
 rm -f /home/mysql/ib_logfile1
 service mysqld restart
 #重置MySQL密码
-wget -q ${mpcdn_2220}/opt/kangle/script/mysql_password.sh -O mysql_password.sh;sh mysql_password.sh $mysql_root_password
+wget -q ${mpcdn_2220}/opt/kangle/script/mysql_password.sh -O ${dir01}/mysql_password.sh;sh mysql_password.sh $mysql_root_password

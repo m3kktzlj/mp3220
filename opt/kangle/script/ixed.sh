@@ -1,9 +1,12 @@
 #!/bin/bash
 
 #Configure workdir
+dir01="/root/kangle_install_tmp"
+dir02="/root/kangle_install_log"
 
-source kangle_install_ver
-source kangle_install_url
+#Source Config
+source ${dir01}/kangle_install_ver
+source ${dir01}/kangle_install_url
 
 #start
 PREFIX="/vhs/kangle/ext"
@@ -38,7 +41,7 @@ elif [ "$line" = "php80" ];then
 fi
 if [ -d $PREFIX/$line ];then
 file="ixed-$SYS-${php_version}.zip"
-wget -c ${mpcdn_3821}/files/ixed/$file -O $file
+wget -c ${mpcdn_3821}/files/ixed/$file -O ${dir01}/$file
 unzip $file
 mkdir -p $PREFIX/$line/ixed
 rm -rf $PREFIX/$line/ixed/ixed.${php_version}.lin

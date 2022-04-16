@@ -1,9 +1,12 @@
 #!/bin/bash
 
 #Configure workdir
+dir01="/root/kangle_install_tmp"
+dir02="/root/kangle_install_log"
 
-source kangle_install_ver
-source kangle_install_url
+#Source Config
+source ${dir01}/kangle_install_ver
+source ${dir01}/kangle_install_url
 
 #start
 PREFIX="/vhs/kangle/ext/"
@@ -34,7 +37,7 @@ if [ "$release" = "8" ]; then
 else
 	if [ ! -d /usr/local/lib/pkgconfig ]; then
 		yum -y remove libzip libzip-devel
-		wget --no-check-certificate -O libzip-1.3.2.tar.gz ${mpcdn_3821}/files/completed/libzip-1.3.2.tar.gz
+		wget --no-check-certificate -O ${dir01}/libzip-1.3.2.tar.gz ${mpcdn_3821}/files/completed/libzip-1.3.2.tar.gz
 		tar xvf libzip-1.3.2.tar.gz
 		cd libzip-1.3.2
 		./configure
@@ -73,7 +76,7 @@ function install_curl()
 {
 if ! openssl version | grep -i "openssl 1.0"; then
 	if [ ! -f /usr/local/openssl-1.0.2u/bin/openssl ]; then
-		wget ${mpcdn_3821}/files/completed/openssl-1.0.2u.tar.gz -O openssl-1.0.2u.tar.gz;
+		wget ${mpcdn_3821}/files/completed/openssl-1.0.2u.tar.gz -O ${dir01}/openssl-1.0.2u.tar.gz;
 		tar -zxvf openssl-1.0.2u.tar.gz;
 		cd openssl-1.0.2u;
 		./config -fPIC --prefix=/usr/local/openssl-1.0.2u --openssldir=/usr/local/openssl-1.0.2u;
@@ -81,7 +84,7 @@ if ! openssl version | grep -i "openssl 1.0"; then
 		cd ..
 	fi;
 	if [ ! -f /usr/local/curl-7.61.1/bin/curl ]; then
-		wget ${mpcdn_3821}/files/completed/curl-7.61.1.tar.bz2 -O curl-7.61.1.tar.bz2;
+		wget ${mpcdn_3821}/files/completed/curl-7.61.1.tar.bz2 -O ${dir01}/curl-7.61.1.tar.bz2;
 		tar -xvf curl-7.61.1.tar.bz2;
 		cd curl-7.61.1;
 		./configure --prefix=/usr/local/curl-7.61.1 --with-ssl=/usr/local/openssl-1.0.2u --enable-ldap --enable-ldaps;
@@ -192,7 +195,7 @@ fi
 
 file="php-${php_version}-${release}-${ARCH}.tar.bz2"
 echo -e "正在下载$file"
-wget -c $php_rapidly_url/files/php/rapidly/$php_rapidly_ver/$file -O $file
+wget -c $php_rapidly_url/files/php/rapidly/$php_rapidly_ver/$file -O ${dir01}/$file
 echo -e "正在解压缩文件"
 tar -xjf $file
 /vhs/kangle/bin/kangle -q

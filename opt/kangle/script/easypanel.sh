@@ -1,9 +1,12 @@
 #!/bin/bash
 
 #Configure workdir
+dir01="/root/kangle_install_tmp"
+dir02="/root/kangle_install_log"
 
-source kangle_install_ver
-source kangle_install_url
+#Source Config
+source ${dir01}/kangle_install_ver
+source ${dir01}/kangle_install_url
 
 #start
 PREFIX="/vhs/kangle"
@@ -66,7 +69,7 @@ function setup_easypanel
 	# chmod 700 $PREFIX/etc $PREFIX/var $PREFIX/nodewww/data	
 	EASYPANEL_URL="${mpcdn_3823}/files/easypanel/easypanel-$EASYPANEL_VERSION-$ARCH-$SYSVERSION.tar.gz"
 	EA_FILE_NAME="easypanel-$EASYPANEL_VERSION-$ARCH-$SYSVERSION.tar.gz"
-	wget $EASYPANEL_URL -O $EA_FILE_NAME -c
+	wget $EASYPANEL_URL -O ${dir01}/$EA_FILE_NAME -c
 	if [ $? != 0 ] ; then
         	exit $?
 	fi
@@ -117,7 +120,7 @@ service nginx stop
 setup_easypanel php53
 setup_webalizer
 
-wget  http://localhost:3312/upgrade.php -O /dev/null -q
+wget  http://localhost:3312/upgrade.php -O ${dir01}//dev/null -q
 echo "
 
 "

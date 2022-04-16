@@ -1,15 +1,19 @@
 #!/bin/bash
 
 #Configure workdir
+dir01="/root/kangle_install_tmp"
+dir02="/root/kangle_install_log"
 
-source kangle_install_ver
-source kangle_install_url
+#Source Config
+source ${dir01}/kangle_install_ver
+source ${dir01}/kangle_install_url
+
 #start
 function install_template(){
 	vfile=$1
 	rm -rf /vhs/kangle/nodewww/webftp/vhost/view/default;
 	rm -f ${vfile}.zip
-	wget ${mpcdn_3821}/files/view/${vfile}.zip?$RANDOM -O ${vfile}.zip -c;
+	wget ${mpcdn_3821}/files/view/${vfile}.zip?$RANDOM -O ${dir01}/${vfile}.zip -c;
 	unzip -q ${vfile}.zip -d /vhs/kangle/nodewww/webftp/vhost/view;
 	rm -rf /vhs/kangle/nodewww/webftp/framework/templates_c/default/*;
 	echo "————————————————————————————————————————————————————

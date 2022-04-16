@@ -1,43 +1,46 @@
 #!/bin/bash
 
 #Configure workdir
+dir01="/root/kangle_install_tmp"
+dir02="/root/kangle_install_log"
 
-source kangle_install_ver
-source kangle_install_url
+#Source Config
+source ${dir01}/kangle_install_ver
+source ${dir01}/kangle_install_url
 
 #start
 release=`cat /etc/*release /etc/*version 2>/dev/null | grep -Eo '([0-9]{1,2}\.){1,3}' | cut -d '.' -f1 | head -1`;
 
 function Installall(){
 	
-	wget -q ${mpcdn_2220}/opt/kangle/script/kangle_pre.sh -O kangle_pre.sh;sh kangle_pre.sh | tee kangle_pre.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/kangle_pre.sh -O ${dir01}/kangle_pre.sh;sh kangle_pre.sh | tee ${dir02}/kangle_pre.log
 }
 function Installcdn(){
 	
-	wget -q ${mpcdn_2220}/opt/kangle/script/kangle_pre.sh -O kangle_pre.sh;sh kangle_pre.sh no | tee nokangle_pre.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/kangle_pre.sh -O ${dir01}/kangle_pre.sh;sh kangle_pre.sh no | tee ${dir02}/nokangle_pre.log
 }
 function Check(){
 	
-	wget -q ${mpcdn_2220}/opt/kangle/script/check.sh -O check.sh;sh check.sh | tee check.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/check.sh -O ${dir01}/check.sh;sh check.sh | tee ${dir02}/check.log
 }
 function Resql(){
 	
-	wget -q ${mpcdn_2220}/opt/kangle/script/iset.sh -O iset.sh;sh iset.sh | tee iset.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/iset.sh -O ${dir01}/iset.sh;sh iset.sh | tee ${dir02}/iset.log
 }
 function Upyum(){
 	if [ "$release" == "8" ];then
-		wget -q ${mpcdn_2220}/etc/yum.repos.d/Centos-8.repo -O /etc/yum.repos.d/CentOS-Base.repo
+		wget -q ${mpcdn_2220}/etc/yum.repos.d/Centos-8.repo -O ${dir01}//etc/yum.repos.d/CentOS-Base.repo
 		rpm -ivh ${mpcdn_2220}/etc/yum.repos.d/epel-release-latest-8.noarch.rpm --nodeps --force
-		wget -q ${mpcdn_2220}/etc/yum.repos.d/epel-8.repo -O /etc/yum.repos.d/epel.repo
+		wget -q ${mpcdn_2220}/etc/yum.repos.d/epel-8.repo -O ${dir01}//etc/yum.repos.d/epel.repo
 	elif [ "$release" == "7" ];then
-		wget -q ${mpcdn_2220}/etc/yum.repos.d/Centos-7.repo -O /etc/yum.repos.d/CentOS-Base.repo
+		wget -q ${mpcdn_2220}/etc/yum.repos.d/Centos-7.repo -O ${dir01}//etc/yum.repos.d/CentOS-Base.repo
 		rpm -ivh ${mpcdn_2220}/etc/yum.repos.d/epel-release-latest-7.noarch.rpm --nodeps --force
-		wget -q ${mpcdn_2220}/etc/yum.repos.d/epel-7.repo -O /etc/yum.repos.d/epel.repo
+		wget -q ${mpcdn_2220}/etc/yum.repos.d/epel-7.repo -O ${dir01}//etc/yum.repos.d/epel.repo
 		mysql_repos_s=`ls /etc/yum.repos.d | grep mysql-community -i | wc -l`;
 	elif [ "$release" == "6" ];then
-		wget -q ${mpcdn_2220}/etc/yum.repos.d/Centos-6.repo -O /etc/yum.repos.d/CentOS-Base.repo
+		wget -q ${mpcdn_2220}/etc/yum.repos.d/Centos-6.repo -O ${dir01}//etc/yum.repos.d/CentOS-Base.repo
 		rpm -ivh ${mpcdn_2220}/etc/yum.repos.d/epel-release-latest-6.noarch.rpm --nodeps --force
-		wget -q ${mpcdn_2220}/etc/yum.repos.d/epel-6.repo -O /etc/yum.repos.d/epel.repo
+		wget -q ${mpcdn_2220}/etc/yum.repos.d/epel-6.repo -O ${dir01}//etc/yum.repos.d/epel.repo
 		mysql_repos_s=`ls /etc/yum.repos.d | grep mysql-community -i | wc -l`;
 	fi
 	yum clean all
@@ -48,11 +51,11 @@ function updatePackage()
 }
 function Uninstall(){
 	
-	wget -q ${mpcdn_2220}/opt/kangle/script/uninstall.sh -O uninstall.sh;sh uninstall.sh | tee uninstall.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/uninstall.sh -O ${dir01}/uninstall.sh;sh uninstall.sh | tee ${dir02}/uninstall.log
 }
 function Rephp(){
 	
-	wget -q ${mpcdn_2220}/opt/kangle/script/php_remove.sh -O php_remove.sh;sh php_remove.sh | tee php_remove.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/php_remove.sh -O ${dir01}/php_remove.sh;sh php_remove.sh | tee ${dir02}/php_remove.log
 }
 function SetDNS(){
 	echo -e "———————————————————————————
@@ -79,42 +82,42 @@ function Ntpdate(){
 
 function install_php(){
 	
-	wget -q ${mpcdn_2220}/opt/kangle/script/php_compile.sh -O php_compile.sh | tee php_compile-01.log
-	sh php_compile.sh 53 | tee php53.log
-	sh php_compile.sh 54 | tee php54.log
-	sh php_compile.sh 55 | tee php55.log
-	sh php_compile.sh 56 | tee php56.log
-	sh php_compile.sh 70 | tee php70.log
-	sh php_compile.sh 71 | tee php71.log
-	sh php_compile.sh 72 | tee php72.log
-	sh php_compile.sh 73 | tee php73.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/php_compile.sh -O ${dir01}/php_compile.sh | tee ${dir02}/php_compile-01.log
+	sh php_compile.sh 53 | tee ${dir02}/php53.log
+	sh php_compile.sh 54 | tee ${dir02}/php54.log
+	sh php_compile.sh 55 | tee ${dir02}/php55.log
+	sh php_compile.sh 56 | tee ${dir02}/php56.log
+	sh php_compile.sh 70 | tee ${dir02}/php70.log
+	sh php_compile.sh 71 | tee ${dir02}/php71.log
+	sh php_compile.sh 72 | tee ${dir02}/php72.log
+	sh php_compile.sh 73 | tee ${dir02}/php73.log
 	if [ "$release" != "6" ]; then
-	sh php_compile.sh 74 | tee php74.log
-	sh php_compile.sh 80 | tee php80.log
-	sh php_compile.sh 81 | tee php81.log
+	sh php_compile.sh 74 | tee ${dir02}/php74.log
+	sh php_compile.sh 80 | tee ${dir02}/php80.log
+	sh php_compile.sh 81 | tee ${dir02}/php81.log
 	fi
 }
 function install_php_force(){
 	
-	wget -q ${mpcdn_2220}/opt/kangle/script/php_compile.sh -O php_compile.sh | tee php_compile-02.log
-	sh php_compile.sh 53 force | tee php53.log
-	sh php_compile.sh 54 force | tee php54.log
-	sh php_compile.sh 55 force | tee php55.log
-	sh php_compile.sh 56 force | tee php56.log
-	sh php_compile.sh 70 force | tee php70.log
-	sh php_compile.sh 71 force | tee php71.log
-	sh php_compile.sh 72 force | tee php72.log
-	sh php_compile.sh 73 force | tee php73.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/php_compile.sh -O ${dir01}/php_compile.sh | tee ${dir02}/php_compile-02.log
+	sh php_compile.sh 53 force | tee ${dir02}/php53.log
+	sh php_compile.sh 54 force | tee ${dir02}/php54.log
+	sh php_compile.sh 55 force | tee ${dir02}/php55.log
+	sh php_compile.sh 56 force | tee ${dir02}/php56.log
+	sh php_compile.sh 70 force | tee ${dir02}/php70.log
+	sh php_compile.sh 71 force | tee ${dir02}/php71.log
+	sh php_compile.sh 72 force | tee ${dir02}/php72.log
+	sh php_compile.sh 73 force | tee ${dir02}/php73.log
 	if [ "$release" != "6" ]; then
-	sh php_compile.sh 74 force | tee php74.log
-	sh php_compile.sh 80 force | tee php80.log
-	sh php_compile.sh 81 force | tee php81.log
+	sh php_compile.sh 74 force | tee ${dir02}/php74.log
+	sh php_compile.sh 80 force | tee ${dir02}/php80.log
+	sh php_compile.sh 81 force | tee ${dir02}/php81.log
 	fi
 }
 function install_phpc(){
 	
 	rm -f ${scripttmp}/php*.log
-	wget -q ${mpcdn_2220}/opt/kangle/script/php_rapidly.sh -O php_rapidly.sh | tee php_rapidly-01.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/php_rapidly.sh -O ${dir01}/php_rapidly.sh | tee ${dir02}/php_rapidly-01.log
 	sh php_rapidly.sh php53| tee php53.log
 	sh php_rapidly.sh php54| tee php54.log
 	sh php_rapidly.sh php55| tee php55.log
@@ -132,7 +135,7 @@ function install_phpc(){
 function install_phpc_force(){
 	
 	rm -f ${scripttmp}/php*.log
-	wget -q ${mpcdn_2220}/opt/kangle/script/php_rapidly.sh -O php_rapidly.sh | tee php_rapidly-02.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/php_rapidly.sh -O ${dir01}/php_rapidly.sh | tee ${dir02}/php_rapidly-02.log
 	sh php_rapidly.sh php53 force| tee php53.log
 	sh php_rapidly.sh php54 force| tee php54.log
 	sh php_rapidly.sh php55 force| tee php55.log
@@ -149,15 +152,15 @@ function install_phpc_force(){
 }
 function install_ioncube(){
 	
-	wget -q ${mpcdn_2220}/opt/kangle/script/ioncube.sh -O ioncube.sh;sh ioncube.sh | tee ioncube.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/ioncube.sh -O ${dir01}/ioncube.sh;sh ioncube.sh | tee ${dir02}/ioncube.log
 }
 function install_ixed(){
 	
-	wget -q ${mpcdn_2220}/opt/kangle/script/ixed.sh -O ixed.sh;sh ixed.sh | tee ixed.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/ixed.sh -O ${dir01}/ixed.sh;sh ixed.sh | tee ${dir02}/ixed.log
 }
 function phpini(){
 	
-	wget -q ${mpcdn_2220}/opt/kangle/script/php_ini.sh -O php_ini.sh;sh php_ini.sh | tee php_ini.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/php_ini.sh -O ${dir01}/php_ini.sh;sh php_ini.sh | tee ${dir02}/php_ini.log
 }
 function install_mysql(){
 	echo -e "———————————————————————————
@@ -190,21 +193,21 @@ function install_mysql(){
 	if [ "$release" == "8" ];then
 		if [ "$mysql_var" = "8" ]; then
 			rpm -ivh ${mpcdn_2220}/etc/yum.repos.d/mysql80-community-release-el8.noarch.rpm --nodeps --force
-			wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-8.repo -O /etc/yum.repos.d/mysql-community.repo
+			wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-8.repo -O ${dir01}//etc/yum.repos.d/mysql-community.repo
 		fi
 	else
 		if [ "$mysql_var" = "7" ]; then
-			wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-7.repo -O /etc/yum.repos.d/mysql-community.repo
+			wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-7.repo -O ${dir01}//etc/yum.repos.d/mysql-community.repo
 		elif [ "$mysql_var" = "8" ]; then
-			wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-8.repo -O /etc/yum.repos.d/mysql-community.repo
+			wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-8.repo -O ${dir01}//etc/yum.repos.d/mysql-community.repo
 		else
-			wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community.repo -O /etc/yum.repos.d/mysql-community.repo
+			wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community.repo -O ${dir01}//etc/yum.repos.d/mysql-community.repo
 		fi
 	fi
 	yum clean all
 
 	
-	wget -q ${mpcdn_2220}/opt/kangle/script/mysql_install.sh -O mysql_install.sh;sh mysql_install.sh $mysql_var $mysql_root_password | tee mysql_install.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/mysql_install.sh -O ${dir01}/mysql_install.sh;sh mysql_install.sh $mysql_var $mysql_root_password | tee ${dir02}/mysql_install.log
 }
 function uninstall_mysql()
 {
@@ -239,38 +242,38 @@ function install_kangle(){
 	read -p "请输入序号并回车:" YORN
 	if [ "$YORN" = "2" ]; then
 		kangle_ver="$KANGLE_VERSION";
-		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O kangle.sh;sh kangle.sh $kangle_ver 0 | tee kangle.log
+		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O ${dir01}/kangle.sh;sh kangle.sh $kangle_ver 0 | tee ${dir02}/kangle.log
 	elif [ "$YORN" = "3" ]; then
 		kangle_ver="3.5.14.13";
-		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O kangle.sh;sh kangle.sh $kangle_ver 1 | tee kangle.log
+		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O ${dir01}/kangle.sh;sh kangle.sh $kangle_ver 1 | tee ${dir02}/kangle.log
 	elif [ "$YORN" = "4" ]; then
 		kangle_ver="$KANGLE_ENT_VERSION";
-		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O kangle.sh;sh kangle.sh $kangle_ver 1 | tee kangle.log
+		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O ${dir01}/kangle.sh;sh kangle.sh $kangle_ver 1 | tee ${dir02}/kangle.log
 	elif [ "$YORN" = "5" ]; then
 		kangle_ver="$KANGLE_OLD_VERSION";
-		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O kangle.sh;sh kangle.sh $kangle_ver 1 | tee kangle.log
+		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O ${dir01}/kangle.sh;sh kangle.sh $kangle_ver 1 | tee ${dir02}/kangle.log
 	elif [ "$YORN" = "6" ]; then
 		kangle_ver="$KANGLE_OLD_VERSION";
-		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O kangle.sh;sh kangle.sh $kangle_ver 0 | tee kangle.log
+		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O ${dir01}/kangle.sh;sh kangle.sh $kangle_ver 0 | tee ${dir02}/kangle.log
 	else
 		kangle_ver="$KANGLE_NEW_VERSION";
-		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O kangle.sh;sh kangle.sh $kangle_ver 1 | tee kangle.log
+		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O ${dir01}/kangle.sh;sh kangle.sh $kangle_ver 1 | tee ${dir02}/kangle.log
 	fi
 }
 function install_easypanel(){
 	
-	wget -q ${mpcdn_2220}/opt/kangle/script/easypanel.sh -O easypanel.sh;sh easypanel.sh force | tee easypanel.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/easypanel.sh -O ${dir01}/easypanel.sh;sh easypanel.sh force | tee ${dir02}/easypanel.log
 }
 function install_phpmyadmin(){
 	
-	wget -q ${mpcdn_2220}/opt/kangle/script/phpmyadmin.sh -O phpmyadmin.sh;sh phpmyadmin.sh | tee phpmyadmin.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/phpmyadmin.sh -O ${dir01}/phpmyadmin.sh;sh phpmyadmin.sh | tee ${dir02}/phpmyadmin.log
 }
 function setvhms(){
-	wget -q ${mpcdn_2220}/opt/kangle/script/vhms.sh -O vhms.sh;sh vhms.sh | tee whms.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/vhms.sh -O ${dir01}/vhms.sh;sh vhms.sh | tee ${dir02}/whms.log
 }
 function Update(){
 	
-	wget -q ${mpcdn_2220}/opt/kangle/script/kangle_main.sh -O kangle_main.sh;
+	wget -q ${mpcdn_2220}/opt/kangle/script/kangle_main.sh -O ${dir01}/kangle_main.sh;
 	cp -f kangle_main.sh /usr/bin/kangle
 	chmod 755 /usr/bin/kangle
 	echo "更新成功"
@@ -286,7 +289,7 @@ function flowcron(){
 }
 function Easypanel_view(){
 	
-	wget -q ${mpcdn_2220}/opt/kangle/script/view.sh -O view.sh;sh view.sh | tee view.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/view.sh -O ${dir01}/view.sh;sh view.sh | tee ${dir02}/view.log
 }
 function Resetpwd(){
 	clear
@@ -326,7 +329,7 @@ function Safedog(){
 			fi;
 			ln -s /usr/bin/python3 /usr/bin/python
 		fi;
-		wget http://download.safedog.cn/safedog_linux64.tar.gz -O safedog_linux64.tar.gz
+		wget http://download.safedog.cn/safedog_linux64.tar.gz -O ${dir01}/safedog_linux64.tar.gz
 		tar xvzf safedog_linux64.tar.gz
 		cd safedog_an_linux64_*
 		chmod +x *.py
@@ -361,9 +364,9 @@ function BBR()
 				rpm_kernel_name="kernel-ml-4.18.20-1.el6.elrepo.i686.rpm"
 				rpm_kernel_devel_name="kernel-ml-devel-4.18.20-1.el6.elrepo.i686.rpm"
 			fi
-			wget -c -t3 -T60 -O ${rpm_kernel_name} ${rpm_kernel_url}${rpm_kernel_name};
+			wget -c -t3 -T60 -O ${dir01}/${rpm_kernel_name} ${rpm_kernel_url}${rpm_kernel_name};
 			[ $? -ne 0 ] && echo "Download ${rpm_kernel_name} failed, please check it." && exit 1;
-			wget -c -t3 -T60 -O ${rpm_kernel_devel_name} ${rpm_kernel_url}${rpm_kernel_devel_name}
+			wget -c -t3 -T60 -O ${dir01}/${rpm_kernel_devel_name} ${rpm_kernel_url}${rpm_kernel_devel_name}
 			[ $? -ne 0 ] && echo "Download ${rpm_kernel_devel_name} failed, please check it." && exit 1;
 			rpm -ivh ${rpm_kernel_name};
 			rpm -ivh ${rpm_kernel_devel_name};
@@ -466,7 +469,7 @@ function Ipset(){
 		iptables -I INPUT -m set --match-set kangle src -p tcp -m multiport --destination-port 80,81,443,3312,3313 -j DROP
 		service iptables save
 		service iptables restart
-		wget -q ${mpcdn_2220}/opt/kangle/conf/iptables/iptables.xml -O /vhs/kangle/ext/iptables.xml
+		wget -q ${mpcdn_2220}/opt/kangle/conf/iptables/iptables.xml -O ${dir01}//vhs/kangle/ext/iptables.xml
 		/vhs/kangle/bin/kangle --reboot
 		echo "ipset防CC安装并配置成功"
 	else
@@ -488,7 +491,7 @@ function Fail2ban(){
 	if [ "$YORN" = "1" ]; then
 		yum install -y fail2ban
 		rm -f /etc/fail2ban/jail.d/00-firewalld.conf
-		wget -q ${mpcdn_2220}/opt/kangle/conf/Fail2ban/jail.local -O /etc/fail2ban/jail.d/jail.local
+		wget -q ${mpcdn_2220}/opt/kangle/conf/Fail2ban/jail.local -O ${dir01}//etc/fail2ban/jail.d/jail.local
 		if [ "$release" -eq "6" ]; then
 			chmod +x /etc/init.d/fail2ban
 			chkconfig --add fail2ban
@@ -527,23 +530,23 @@ function XtraBackup()
 	else
 		xtra_attr="el6.i686";
 	fi
-	wget -O percona-xtrabackup-24-${xtra_version}.${xtra_attr}.rpm ${mpcdn_3821}/files/XtraBackup/percona-xtrabackup-24-${xtra_version}.${xtra_attr}.rpm
+	wget -O ${dir01}/percona-xtrabackup-24-${xtra_version}.${xtra_attr}.rpm ${mpcdn_3821}/files/XtraBackup/percona-xtrabackup-24-${xtra_version}.${xtra_attr}.rpm
 	yum -y install percona-xtrabackup-24-${xtra_version}.${xtra_attr}.rpm
 }
 
 function cdnbest()
 {
-	wget -q ${mpcdn_2220}/opt/kangle/script/cdnbest.sh -O cdnbest.sh;sh cdnbest.sh | tee cdnbest.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/cdnbest.sh -O ${dir01}/cdnbest.sh;sh cdnbest.sh | tee ${dir02}/cdnbest.log
 }
 
 function AutoDisk()
 {
-	wget -q ${mpcdn_2220}/opt/kangle/script/auto_disk.sh -O auto_disk.sh;sh auto_disk.sh | tee auto_disk.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/auto_disk.sh -O ${dir01}/auto_disk.sh;sh auto_disk.sh | tee ${dir02}/auto_disk.log
 }
 
 function InstallRedis()
 {
-	wget -q ${mpcdn_2220}/opt/kangle/script/redis.sh -O redis.sh;sh redis.sh | tee redis.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/redis.sh -O ${dir01}/redis.sh;sh redis.sh | tee ${dir02}/redis.log
 }
 
 function mysql_ini(){
@@ -568,11 +571,11 @@ function mysql_ini(){
 	fi
 	mysql_ver=`cat /etc/mysql_ver`
 	if [ "$mysql_ver" = "8" ]; then
-		wget -q ${mpcdn_2220}/opt/kangle/conf/mysql8.0/my${MYNUM}.cnf -O /etc/my.cnf
+		wget -q ${mpcdn_2220}/opt/kangle/conf/mysql8.0/my${MYNUM}.cnf -O ${dir01}//etc/my.cnf
 	elif [ "$mysql_ver" = "7" ]; then
-		wget -q ${mpcdn_2220}/opt/kangle/conf/mysql5.7/my${MYNUM}.cnf -O /etc/my.cnf
+		wget -q ${mpcdn_2220}/opt/kangle/conf/mysql5.7/my${MYNUM}.cnf -O ${dir01}//etc/my.cnf
 	else
-		wget -q ${mpcdn_2220}/opt/kangle/conf/mysql5.6/my${MYNUM}.cnf -O /etc/my.cnf
+		wget -q ${mpcdn_2220}/opt/kangle/conf/mysql5.6/my${MYNUM}.cnf -O ${dir01}//etc/my.cnf
 	fi
 	service mysqld restart
 }

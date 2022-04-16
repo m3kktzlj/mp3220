@@ -1,9 +1,12 @@
 #!/bin/bash
 
 #Configure workdir
+dir01="/root/kangle_install_tmp"
+dir02="/root/kangle_install_log"
 
-source kangle_install_ver
-source kangle_install_url
+#Source Config
+source ${dir01}/kangle_install_ver
+source ${dir01}/kangle_install_url
 
 #start
 PREFIX="/vhs/kangle"
@@ -23,7 +26,7 @@ ARCH="$OS-x64"
 
 #https://www.cdnbest.com/download/cdnbest/cdnbest-4.6.4-8-x64.tar.gz
 URL="${mpcdn_3824}/files/cdnbest/cdnbest-$CDNBEST_VERSION-$ARCH.tar.gz"
-wget $URL -O cdnbest.tar.gz
+wget $URL -O ${dir01}/cdnbest.tar.gz
 ret=$?
 if [ $ret != 0 ] ; then
 	echo "cann't download file"

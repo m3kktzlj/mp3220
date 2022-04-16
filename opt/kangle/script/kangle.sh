@@ -1,9 +1,12 @@
 #!/bin/bash
 
 #Configure workdir
+dir01="/root/kangle_install_tmp"
+dir02="/root/kangle_install_log"
 
-source kangle_install_ver
-source kangle_install_url
+#Source Config
+source ${dir01}/kangle_install_ver
+source ${dir01}/kangle_install_url
 
 #start
 PREFIX="/vhs/kangle"
@@ -55,14 +58,14 @@ function setup_kangle_completed
 	#http://download.cdnbest.com/ent/kangle-ent-3.4.8-6-x64.tar.gz
 	#https://www.cdnbest.com/download/cdnbest/kangle-cdnbest-3.5.16.9-7-x64.tar.gz
 	URL="${mpcdn_3822}/files/kangle-ent/kangle-ent-$VERSION-$ARCH.tar.gz"
-	wget $URL -O kangle.tar.gz
+	wget $URL -O ${dir01}/kangle.tar.gz
 	tar xzf kangle.tar.gz
 	cd kangle
 	mkdir -p $PREFIX
 	./install.sh $PREFIX
 
 	if [ ! -f $PREFIX/etc/kanglestat ] ; then
-		wget ${mpcdn_2220}/opt/kangle/conf/kanglestat -O $PREFIX/etc/kanglestat
+		wget ${mpcdn_2220}/opt/kangle/conf/kanglestat -O ${dir01}/$PREFIX/etc/kanglestat
 	fi
 	if [ ! -f /etc/init.d/kangle ] ; then
 		\cp $PREFIX/etc/kanglestat /etc/init.d/kangle
@@ -149,7 +152,7 @@ function setup_kangle
 		exit $?
 	else
 		if [ ! -f $PREFIX/etc/kanglestat ] ; then
-			wget ${mpcdn_2220}/opt/kangle/conf/kanglestat -O $PREFIX/etc/kanglestat
+			wget ${mpcdn_2220}/opt/kangle/conf/kanglestat -O ${dir01}/$PREFIX/etc/kanglestat
 		fi
 		if [ ! -f /etc/init.d/kangle ] ; then
 			\cp $PREFIX/etc/kanglestat /etc/init.d/kangle
