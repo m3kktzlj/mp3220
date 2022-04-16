@@ -1,11 +1,9 @@
 #!/bin/bash
 
 #Configure workdir
-dir01="./kangle_install_tmp"
-dir02="./kangle_install_log"
 
-source ${dir01}/kangle_install_ver
-source ${dir01}/kangle_install_url
+source kangle_install_ver
+source kangle_install_url
 
 #start
 release=`cat /etc/*release /etc/*version 2>/dev/null | grep -Eo '([0-9]{1,2}\.){1,3}' | cut -d '.' -f1 | head -1`;

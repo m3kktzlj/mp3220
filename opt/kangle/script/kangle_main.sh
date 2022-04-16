@@ -1,30 +1,28 @@
 #!/bin/bash
 
 #Configure workdir
-dir01="./kangle_install_tmp"
-dir02="./kangle_install_log"
 
-source ${dir01}/kangle_install_ver
-source ${dir01}/kangle_install_url
+source kangle_install_ver
+source kangle_install_url
 
 #start
 release=`cat /etc/*release /etc/*version 2>/dev/null | grep -Eo '([0-9]{1,2}\.){1,3}' | cut -d '.' -f1 | head -1`;
 
 function Installall(){
-	cd ${dir01}
-	wget -q ${mpcdn_2220}/opt/kangle/script/kangle_pre.sh -O kangle_pre.sh;sh kangle_pre.sh | tee ${dir02}/kangle_pre.log
+	
+	wget -q ${mpcdn_2220}/opt/kangle/script/kangle_pre.sh -O kangle_pre.sh;sh kangle_pre.sh | tee kangle_pre.log
 }
 function Installcdn(){
-	cd ${dir01}
-	wget -q ${mpcdn_2220}/opt/kangle/script/kangle_pre.sh -O kangle_pre.sh;sh kangle_pre.sh no | tee ${dir02}/nokangle_pre.log
+	
+	wget -q ${mpcdn_2220}/opt/kangle/script/kangle_pre.sh -O kangle_pre.sh;sh kangle_pre.sh no | tee nokangle_pre.log
 }
 function Check(){
-	cd ${dir01}
-	wget -q ${mpcdn_2220}/opt/kangle/script/check.sh -O check.sh;sh check.sh | tee ${dir02}/check.log
+	
+	wget -q ${mpcdn_2220}/opt/kangle/script/check.sh -O check.sh;sh check.sh | tee check.log
 }
 function Resql(){
-	cd ${dir01}
-	wget -q ${mpcdn_2220}/opt/kangle/script/iset.sh -O iset.sh;sh iset.sh | tee ${dir02}/iset.log
+	
+	wget -q ${mpcdn_2220}/opt/kangle/script/iset.sh -O iset.sh;sh iset.sh | tee iset.log
 }
 function Upyum(){
 	if [ "$release" == "8" ];then
@@ -49,12 +47,12 @@ function updatePackage()
 	yum --exclude=kernel* update -y;
 }
 function Uninstall(){
-	cd ${dir01}
-	wget -q ${mpcdn_2220}/opt/kangle/script/uninstall.sh -O uninstall.sh;sh uninstall.sh | tee ${dir02}/uninstall.log
+	
+	wget -q ${mpcdn_2220}/opt/kangle/script/uninstall.sh -O uninstall.sh;sh uninstall.sh | tee uninstall.log
 }
 function Rephp(){
-	cd ${dir01}
-	wget -q ${mpcdn_2220}/opt/kangle/script/php_remove.sh -O php_remove.sh;sh php_remove.sh | tee ${dir02}/php_remove.log
+	
+	wget -q ${mpcdn_2220}/opt/kangle/script/php_remove.sh -O php_remove.sh;sh php_remove.sh | tee php_remove.log
 }
 function SetDNS(){
 	echo -e "———————————————————————————
@@ -80,86 +78,86 @@ function Ntpdate(){
 }
 
 function install_php(){
-	cd ${dir01}
-	wget -q ${mpcdn_2220}/opt/kangle/script/php_compile.sh -O php_compile.sh | tee ${dir02}/php_compile-01.log
-	sh php_compile.sh 53 | tee ${dir02}/php53.log
-	sh php_compile.sh 54 | tee ${dir02}/php54.log
-	sh php_compile.sh 55 | tee ${dir02}/php55.log
-	sh php_compile.sh 56 | tee ${dir02}/php56.log
-	sh php_compile.sh 70 | tee ${dir02}/php70.log
-	sh php_compile.sh 71 | tee ${dir02}/php71.log
-	sh php_compile.sh 72 | tee ${dir02}/php72.log
-	sh php_compile.sh 73 | tee ${dir02}/php73.log
+	
+	wget -q ${mpcdn_2220}/opt/kangle/script/php_compile.sh -O php_compile.sh | tee php_compile-01.log
+	sh php_compile.sh 53 | tee php53.log
+	sh php_compile.sh 54 | tee php54.log
+	sh php_compile.sh 55 | tee php55.log
+	sh php_compile.sh 56 | tee php56.log
+	sh php_compile.sh 70 | tee php70.log
+	sh php_compile.sh 71 | tee php71.log
+	sh php_compile.sh 72 | tee php72.log
+	sh php_compile.sh 73 | tee php73.log
 	if [ "$release" != "6" ]; then
-	sh php_compile.sh 74 | tee ${dir02}/php74.log
-	sh php_compile.sh 80 | tee ${dir02}/php80.log
-	sh php_compile.sh 81 | tee ${dir02}/php81.log
+	sh php_compile.sh 74 | tee php74.log
+	sh php_compile.sh 80 | tee php80.log
+	sh php_compile.sh 81 | tee php81.log
 	fi
 }
 function install_php_force(){
-	cd ${dir01}
-	wget -q ${mpcdn_2220}/opt/kangle/script/php_compile.sh -O php_compile.sh | tee ${dir02}/php_compile-02.log
-	sh php_compile.sh 53 force | tee ${dir02}/php53.log
-	sh php_compile.sh 54 force | tee ${dir02}/php54.log
-	sh php_compile.sh 55 force | tee ${dir02}/php55.log
-	sh php_compile.sh 56 force | tee ${dir02}/php56.log
-	sh php_compile.sh 70 force | tee ${dir02}/php70.log
-	sh php_compile.sh 71 force | tee ${dir02}/php71.log
-	sh php_compile.sh 72 force | tee ${dir02}/php72.log
-	sh php_compile.sh 73 force | tee ${dir02}/php73.log
+	
+	wget -q ${mpcdn_2220}/opt/kangle/script/php_compile.sh -O php_compile.sh | tee php_compile-02.log
+	sh php_compile.sh 53 force | tee php53.log
+	sh php_compile.sh 54 force | tee php54.log
+	sh php_compile.sh 55 force | tee php55.log
+	sh php_compile.sh 56 force | tee php56.log
+	sh php_compile.sh 70 force | tee php70.log
+	sh php_compile.sh 71 force | tee php71.log
+	sh php_compile.sh 72 force | tee php72.log
+	sh php_compile.sh 73 force | tee php73.log
 	if [ "$release" != "6" ]; then
-	sh php_compile.sh 74 force | tee ${dir02}/php74.log
-	sh php_compile.sh 80 force | tee ${dir02}/php80.log
-	sh php_compile.sh 81 force | tee ${dir02}/php81.log
+	sh php_compile.sh 74 force | tee php74.log
+	sh php_compile.sh 80 force | tee php80.log
+	sh php_compile.sh 81 force | tee php81.log
 	fi
 }
 function install_phpc(){
-	cd ${dir01}
-	rm -f ${dir02}/php*.log
-	wget -q ${mpcdn_2220}/opt/kangle/script/php_rapidly.sh -O php_rapidly.sh | tee ${dir02}/php_rapidly-01.log
-	sh php_rapidly.sh php53| tee ${dir02}/php53.log
-	sh php_rapidly.sh php54| tee ${dir02}/php54.log
-	sh php_rapidly.sh php55| tee ${dir02}/php55.log
-	sh php_rapidly.sh php56| tee ${dir02}/php56.log
-	sh php_rapidly.sh php70| tee ${dir02}/php70.log
-	sh php_rapidly.sh php71| tee ${dir02}/php71.log
-	sh php_rapidly.sh php72| tee ${dir02}/php72.log
-	sh php_rapidly.sh php73| tee ${dir02}/php73.log
+	
+	rm -f ${scripttmp}/php*.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/php_rapidly.sh -O php_rapidly.sh | tee php_rapidly-01.log
+	sh php_rapidly.sh php53| tee php53.log
+	sh php_rapidly.sh php54| tee php54.log
+	sh php_rapidly.sh php55| tee php55.log
+	sh php_rapidly.sh php56| tee php56.log
+	sh php_rapidly.sh php70| tee php70.log
+	sh php_rapidly.sh php71| tee php71.log
+	sh php_rapidly.sh php72| tee php72.log
+	sh php_rapidly.sh php73| tee php73.log
 	if [ "$release" != "6" ]; then
-	sh php_rapidly.sh php74| tee ${dir02}/php74.log
-	sh php_rapidly.sh php80| tee ${dir02}/php80.log
-	sh php_rapidly.sh php81| tee ${dir02}/php81.log
+	sh php_rapidly.sh php74| tee php74.log
+	sh php_rapidly.sh php80| tee php80.log
+	sh php_rapidly.sh php81| tee php81.log
 	fi
 }
 function install_phpc_force(){
-	cd ${dir01}
-	rm -f ${dir02}/php*.log
-	wget -q ${mpcdn_2220}/opt/kangle/script/php_rapidly.sh -O php_rapidly.sh | tee ${dir02}/php_rapidly-02.log
-	sh php_rapidly.sh php53 force| tee ${dir02}/php53.log
-	sh php_rapidly.sh php54 force| tee ${dir02}/php54.log
-	sh php_rapidly.sh php55 force| tee ${dir02}/php55.log
-	sh php_rapidly.sh php56 force| tee ${dir02}/php56.log
-	sh php_rapidly.sh php70 force| tee ${dir02}/php70.log
-	sh php_rapidly.sh php71 force| tee ${dir02}/php71.log
-	sh php_rapidly.sh php72 force| tee ${dir02}/php72.log
-	sh php_rapidly.sh php73 force| tee ${dir02}/php73.log
+	
+	rm -f ${scripttmp}/php*.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/php_rapidly.sh -O php_rapidly.sh | tee php_rapidly-02.log
+	sh php_rapidly.sh php53 force| tee php53.log
+	sh php_rapidly.sh php54 force| tee php54.log
+	sh php_rapidly.sh php55 force| tee php55.log
+	sh php_rapidly.sh php56 force| tee php56.log
+	sh php_rapidly.sh php70 force| tee php70.log
+	sh php_rapidly.sh php71 force| tee php71.log
+	sh php_rapidly.sh php72 force| tee php72.log
+	sh php_rapidly.sh php73 force| tee php73.log
 	if [ "$release" != "6" ]; then
-	sh php_rapidly.sh php74 force| tee ${dir02}/php74.log
-	sh php_rapidly.sh php80 force| tee ${dir02}/php80.log
-	sh php_rapidly.sh php81 force| tee ${dir02}/php81.log
+	sh php_rapidly.sh php74 force| tee php74.log
+	sh php_rapidly.sh php80 force| tee php80.log
+	sh php_rapidly.sh php81 force| tee php81.log
 	fi
 }
 function install_ioncube(){
-	cd ${dir01}
-	wget -q ${mpcdn_2220}/opt/kangle/script/ioncube.sh -O ioncube.sh;sh ioncube.sh | tee ${dir02}/ioncube.log
+	
+	wget -q ${mpcdn_2220}/opt/kangle/script/ioncube.sh -O ioncube.sh;sh ioncube.sh | tee ioncube.log
 }
 function install_ixed(){
-	cd ${dir01}
-	wget -q ${mpcdn_2220}/opt/kangle/script/ixed.sh -O ixed.sh;sh ixed.sh | tee ${dir02}/ixed.log
+	
+	wget -q ${mpcdn_2220}/opt/kangle/script/ixed.sh -O ixed.sh;sh ixed.sh | tee ixed.log
 }
 function phpini(){
-	cd ${dir01}
-	wget -q ${mpcdn_2220}/opt/kangle/script/php_ini.sh -O php_ini.sh;sh php_ini.sh | tee ${dir02}/php_ini.log
+	
+	wget -q ${mpcdn_2220}/opt/kangle/script/php_ini.sh -O php_ini.sh;sh php_ini.sh | tee php_ini.log
 }
 function install_mysql(){
 	echo -e "———————————————————————————
@@ -205,8 +203,8 @@ function install_mysql(){
 	fi
 	yum clean all
 
-	cd ${dir01}
-	wget -q ${mpcdn_2220}/opt/kangle/script/mysql_install.sh -O mysql_install.sh;sh mysql_install.sh $mysql_var $mysql_root_password | tee ${dir02}/mysql_install.log
+	
+	wget -q ${mpcdn_2220}/opt/kangle/script/mysql_install.sh -O mysql_install.sh;sh mysql_install.sh $mysql_var $mysql_root_password | tee mysql_install.log
 }
 function uninstall_mysql()
 {
@@ -227,7 +225,7 @@ function uninstall_mysql()
 	fi;
 }
 function install_kangle(){
-	cd ${dir01}
+	
 	echo -e "———————————————————————————
 	\033[1mＫＡＮＧＬＥＳＯＦＴ\033[0m
 	\033[32mKangle版本选择\033[0m
@@ -241,37 +239,37 @@ function install_kangle(){
 	read -p "请输入序号并回车:" YORN
 	if [ "$YORN" = "2" ]; then
 		kangle_ver="$KANGLE_VERSION";
-		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O kangle.sh;sh kangle.sh $kangle_ver 0 | tee ${dir02}/kangle.log
+		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O kangle.sh;sh kangle.sh $kangle_ver 0 | tee kangle.log
 	elif [ "$YORN" = "3" ]; then
 		kangle_ver="3.5.14.13";
-		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O kangle.sh;sh kangle.sh $kangle_ver 1 | tee ${dir02}/kangle.log
+		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O kangle.sh;sh kangle.sh $kangle_ver 1 | tee kangle.log
 	elif [ "$YORN" = "4" ]; then
 		kangle_ver="$KANGLE_ENT_VERSION";
-		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O kangle.sh;sh kangle.sh $kangle_ver 1 | tee ${dir02}/kangle.log
+		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O kangle.sh;sh kangle.sh $kangle_ver 1 | tee kangle.log
 	elif [ "$YORN" = "5" ]; then
 		kangle_ver="$KANGLE_OLD_VERSION";
-		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O kangle.sh;sh kangle.sh $kangle_ver 1 | tee ${dir02}/kangle.log
+		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O kangle.sh;sh kangle.sh $kangle_ver 1 | tee kangle.log
 	elif [ "$YORN" = "6" ]; then
 		kangle_ver="$KANGLE_OLD_VERSION";
-		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O kangle.sh;sh kangle.sh $kangle_ver 0 | tee ${dir02}/kangle.log
+		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O kangle.sh;sh kangle.sh $kangle_ver 0 | tee kangle.log
 	else
 		kangle_ver="$KANGLE_NEW_VERSION";
-		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O kangle.sh;sh kangle.sh $kangle_ver 1 | tee ${dir02}/kangle.log
+		wget -q ${mpcdn_2220}/opt/kangle/script/kangle.sh -O kangle.sh;sh kangle.sh $kangle_ver 1 | tee kangle.log
 	fi
 }
 function install_easypanel(){
-	cd ${dir01}
-	wget -q ${mpcdn_2220}/opt/kangle/script/easypanel.sh -O easypanel.sh;sh easypanel.sh force | tee ${dir02}/easypanel.log
+	
+	wget -q ${mpcdn_2220}/opt/kangle/script/easypanel.sh -O easypanel.sh;sh easypanel.sh force | tee easypanel.log
 }
 function install_phpmyadmin(){
-	cd ${dir01}
-	wget -q ${mpcdn_2220}/opt/kangle/script/phpmyadmin.sh -O phpmyadmin.sh;sh phpmyadmin.sh | tee ${dir02}/phpmyadmin.log
+	
+	wget -q ${mpcdn_2220}/opt/kangle/script/phpmyadmin.sh -O phpmyadmin.sh;sh phpmyadmin.sh | tee phpmyadmin.log
 }
 function setvhms(){
-	wget -q ${mpcdn_2220}/opt/kangle/script/vhms.sh -O vhms.sh;sh vhms.sh | tee ${dir02}/whms.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/vhms.sh -O vhms.sh;sh vhms.sh | tee whms.log
 }
 function Update(){
-	cd ${dir01}
+	
 	wget -q ${mpcdn_2220}/opt/kangle/script/kangle_main.sh -O kangle_main.sh;
 	cp -f kangle_main.sh /usr/bin/kangle
 	chmod 755 /usr/bin/kangle
@@ -287,8 +285,8 @@ function flowcron(){
 "
 }
 function Easypanel_view(){
-	cd ${dir01}
-	wget -q ${mpcdn_2220}/opt/kangle/script/view.sh -O view.sh;sh view.sh | tee ${dir02}/view.log
+	
+	wget -q ${mpcdn_2220}/opt/kangle/script/view.sh -O view.sh;sh view.sh | tee view.log
 }
 function Resetpwd(){
 	clear
@@ -320,7 +318,7 @@ function Safedog(){
 	2. 卸载"
 	read -p "请输入序号并回车:" YORN
 	if [ "$YORN" = "1" ]; then
-		cd ${dir01}
+		
 		yum -y install mlocate lsof pciutils dmidecode psmisc
 		if [ ! -f /usr/bin/python ]; then
 			if [ ! -f /usr/bin/python3 ]; then
@@ -339,7 +337,7 @@ function Safedog(){
 		echo "安全狗Linux版安装完毕！"
 		echo "执行以下命令加入服云：sdcloud -u 你的用户名"
 	else
-		cd ${dir01}
+		
 		cd safedog_an_linux64_*
 		./uninstall.py
 	fi
@@ -535,21 +533,21 @@ function XtraBackup()
 
 function cdnbest()
 {
-	wget -q ${mpcdn_2220}/opt/kangle/script/cdnbest.sh -O cdnbest.sh;sh cdnbest.sh | tee ${dir02}/cdnbest.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/cdnbest.sh -O cdnbest.sh;sh cdnbest.sh | tee cdnbest.log
 }
 
 function AutoDisk()
 {
-	wget -q ${mpcdn_2220}/opt/kangle/script/auto_disk.sh -O auto_disk.sh;sh auto_disk.sh | tee ${dir02}/auto_disk.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/auto_disk.sh -O auto_disk.sh;sh auto_disk.sh | tee auto_disk.log
 }
 
 function InstallRedis()
 {
-	wget -q ${mpcdn_2220}/opt/kangle/script/redis.sh -O redis.sh;sh redis.sh | tee ${dir02}/redis.log
+	wget -q ${mpcdn_2220}/opt/kangle/script/redis.sh -O redis.sh;sh redis.sh | tee redis.log
 }
 
 function mysql_ini(){
-	cd ${dir01}
+	
 	echo -e "———————————————————————————
 	\033[1mＫＡＮＧＬＥＳＯＦＴ\033[0m
 	\033[32mMysql配置文件(my.cnf)选择\033[0m

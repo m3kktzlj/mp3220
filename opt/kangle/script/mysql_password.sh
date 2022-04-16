@@ -1,11 +1,9 @@
 #!/bin/bash
 
 #Configure workdir
-dir01="./kangle_install_tmp"
-dir02="./kangle_install_log"
 
-source ${dir01}/kangle_install_ver
-source ${dir01}/kangle_install_url
+source kangle_install_ver
+source kangle_install_url
 
 #start
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
