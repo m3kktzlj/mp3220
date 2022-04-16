@@ -4,9 +4,14 @@
 dir01="/root/kangle_install_tmp"
 dir02="/root/kangle_install_log"
 
+<<<<<<< HEAD:storage/opt/kangle/script/kangle.sh
 #Source Config
 source ${dir01}/kangle_install_ver
 source ${dir01}/kangle_install_url
+=======
+source $dir02/kangle10_install_url
+source $dir02/kangle10_install_ver
+>>>>>>> parent of 6037f62 (update):storage/opt/kangle10/script/kangle.sh
 
 #start
 PREFIX="/vhs/kangle"
@@ -57,15 +62,24 @@ function setup_kangle_completed
 	fi
 	#http://download.cdnbest.com/ent/kangle-ent-3.4.8-6-x64.tar.gz
 	#https://www.cdnbest.com/download/cdnbest/kangle-cdnbest-3.5.16.9-7-x64.tar.gz
+<<<<<<< HEAD:storage/opt/kangle/script/kangle.sh
 	URL="${mpcdn_3822}/files/kangle-ent/kangle-ent-$VERSION-$ARCH.tar.gz"
 	wget $URL -O ${dir01}/kangle.tar.gz
+=======
+	URL="$mpcdn_3822/files/kangle-ent/kangle-ent-$VERSION-$ARCH.tar.gz"
+	wget $URL -O kangle.tar.gz
+>>>>>>> parent of 6037f62 (update):storage/opt/kangle10/script/kangle.sh
 	tar xzf kangle.tar.gz
 	cd kangle
 	mkdir -p $PREFIX
 	./install.sh $PREFIX
 
 	if [ ! -f $PREFIX/etc/kanglestat ] ; then
+<<<<<<< HEAD:storage/opt/kangle/script/kangle.sh
 		wget ${mpcdn_2220}/opt/kangle/conf/kanglestat -O ${dir01}/$PREFIX/etc/kanglestat
+=======
+		wget $runner_url/opt/kangle10/conf/kanglestat -O $PREFIX/etc/kanglestat
+>>>>>>> parent of 6037f62 (update):storage/opt/kangle10/script/kangle.sh
 	fi
 	if [ ! -f /etc/init.d/kangle ] ; then
 		\cp $PREFIX/etc/kanglestat /etc/init.d/kangle
@@ -127,7 +141,7 @@ function setup_kangle
 	if [  -f kangle-$VERSION.tar.gz ] ; then
 		rm -f kangle-$VERSION.tar.gz
 	fi	
-	wget ${mpcdn_3822}/files/kangle/$KANGLE_FILE_NAME
+	wget $mpcdn_3822/files/kangle/$KANGLE_FILE_NAME
 	if [ $? != 0 ] ; then
 		exit $?
 	fi
@@ -152,7 +166,11 @@ function setup_kangle
 		exit $?
 	else
 		if [ ! -f $PREFIX/etc/kanglestat ] ; then
+<<<<<<< HEAD:storage/opt/kangle/script/kangle.sh
 			wget ${mpcdn_2220}/opt/kangle/conf/kanglestat -O ${dir01}/$PREFIX/etc/kanglestat
+=======
+			wget $runner_url/opt/kangle10/conf/kanglestat -O $PREFIX/etc/kanglestat
+>>>>>>> parent of 6037f62 (update):storage/opt/kangle10/script/kangle.sh
 		fi
 		if [ ! -f /etc/init.d/kangle ] ; then
 			\cp $PREFIX/etc/kanglestat /etc/init.d/kangle

@@ -4,9 +4,14 @@
 dir01="/root/kangle_install_tmp"
 dir02="/root/kangle_install_log"
 
+<<<<<<< HEAD:storage/opt/kangle/script/kangle_pre.sh
 #Source Config
 source ${dir01}/kangle_install_ver
 source ${dir01}/kangle_install_url
+=======
+source $dir02/kangle10_install_url
+source $dir02/kangle10_install_ver
+>>>>>>> parent of 6037f62 (update):storage/opt/kangle10/script/kangle10_pre.sh
 
 #start
 install_mysql=$1
@@ -121,53 +126,96 @@ echo -e "
 if [ "$OS6" = "$centos6" ];then
 	yum_repos_s=`ls /etc/yum.repos.d | wc -l`;
 	if [ "$yum_repos_s" == '0' ]; then
+<<<<<<< HEAD:storage/opt/kangle/script/kangle_pre.sh
 		wget -q ${mpcdn_2220}/etc/yum.repos.d/Centos-6.repo -O ${dir01}//etc/yum.repos.d/CentOS-Base.repo
 	fi;
 	epel_repos_s=`ls /etc/yum.repos.d | grep epel -i | wc -l`;
 	if [ "$epel_repos_s" == '0' ]; then
 		rpm -ivh ${mpcdn_2220}/etc/yum.repos.d/epel-release-latest-6.noarch.rpm --nodeps --force
 		wget -q ${mpcdn_2220}/etc/yum.repos.d/epel-6.repo -O ${dir01}//etc/yum.repos.d/epel.repo
+=======
+		wget -q $runner_url/etc/yum.repos.d/Centos-6.repo -O /etc/yum.repos.d/CentOS-Base.repo
 	fi;
-	rpm -ivh ${mpcdn_2220}/etc/yum.repos.d/mysql-community-release-el6-7.noarch.rpm --nodeps --force
+	epel_repos_s=`ls /etc/yum.repos.d | grep epel -i | wc -l`;
+	if [ "$epel_repos_s" == '0' ]; then
+		rpm -ivh $runner_url/etc/yum.repos.d/epel-release-latest-6.noarch.rpm --nodeps --force
+		wget -q $runner_url/etc/yum.repos.d/epel-6.repo -O /etc/yum.repos.d/epel.repo
+>>>>>>> parent of 6037f62 (update):storage/opt/kangle10/script/kangle10_pre.sh
+	fi;
+	rpm -ivh $runner_url/etc/yum.repos.d/mysql-community-release-el6-7.noarch.rpm --nodeps --force
 	if [ "$mysql_ver" = "7" ]; then
+<<<<<<< HEAD:storage/opt/kangle/script/kangle_pre.sh
 		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-7.repo -O ${dir01}//etc/yum.repos.d/mysql-community.repo
 	elif [ "$mysql_ver" = "8" ]; then
 		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-8.repo -O ${dir01}//etc/yum.repos.d/mysql-community.repo
 	else
 		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community.repo -O ${dir01}//etc/yum.repos.d/mysql-community.repo
+=======
+		wget -q $runner_url/etc/yum.repos.d/mysql-community-7.repo -O /etc/yum.repos.d/mysql-community.repo
+	elif [ "$mysql_ver" = "8" ]; then
+		wget -q $runner_url/etc/yum.repos.d/mysql-community-8.repo -O /etc/yum.repos.d/mysql-community.repo
+	else
+		wget -q $runner_url/etc/yum.repos.d/mysql-community.repo -O /etc/yum.repos.d/mysql-community.repo
+>>>>>>> parent of 6037f62 (update):storage/opt/kangle10/script/kangle10_pre.sh
 	fi
 elif [ "$OS7" = "$centos7" ];then
 	yum_repos_s=`ls /etc/yum.repos.d | wc -l`;
 	if [ "$yum_repos_s" == '0' ]; then
+<<<<<<< HEAD:storage/opt/kangle/script/kangle_pre.sh
 		wget -q ${mpcdn_2220}/etc/yum.repos.d/Centos-7.repo -O ${dir01}//etc/yum.repos.d/CentOS-Base.repo
 	fi;
 	epel_repos_s=`ls /etc/yum.repos.d | grep epel -i | wc -l`;
 	if [ "$epel_repos_s" == '0' ]; then
 		rpm -ivh ${mpcdn_2220}/etc/yum.repos.d/epel-release-latest-7.noarch.rpm --nodeps --force
 		wget -q ${mpcdn_2220}/etc/yum.repos.d/epel-7.repo -O ${dir01}//etc/yum.repos.d/epel.repo
+=======
+		wget -q $runner_url/etc/yum.repos.d/Centos-7.repo -O /etc/yum.repos.d/CentOS-Base.repo
 	fi;
-	rpm -ivh ${mpcdn_2220}/etc/yum.repos.d/mysql-community-release-el7-7.noarch.rpm --nodeps --force
+	epel_repos_s=`ls /etc/yum.repos.d | grep epel -i | wc -l`;
+	if [ "$epel_repos_s" == '0' ]; then
+		rpm -ivh $runner_url/etc/yum.repos.d/epel-release-latest-7.noarch.rpm --nodeps --force
+		wget -q $runner_url/etc/yum.repos.d/epel-7.repo -O /etc/yum.repos.d/epel.repo
+>>>>>>> parent of 6037f62 (update):storage/opt/kangle10/script/kangle10_pre.sh
+	fi;
+	rpm -ivh $runner_url/etc/yum.repos.d/mysql-community-release-el7-7.noarch.rpm --nodeps --force
 	if [ "$mysql_ver" = "7" ]; then
+<<<<<<< HEAD:storage/opt/kangle/script/kangle_pre.sh
 		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-7.repo -O ${dir01}//etc/yum.repos.d/mysql-community.repo
 	elif [ "$mysql_ver" = "8" ]; then
 		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-8.repo -O ${dir01}//etc/yum.repos.d/mysql-community.repo
 	else
 		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community.repo -O ${dir01}//etc/yum.repos.d/mysql-community.repo
+=======
+		wget -q $runner_url/etc/yum.repos.d/mysql-community-7.repo -O /etc/yum.repos.d/mysql-community.repo
+	elif [ "$mysql_ver" = "8" ]; then
+		wget -q $runner_url/etc/yum.repos.d/mysql-community-8.repo -O /etc/yum.repos.d/mysql-community.repo
+	else
+		wget -q $runner_url/etc/yum.repos.d/mysql-community.repo -O /etc/yum.repos.d/mysql-community.repo
+>>>>>>> parent of 6037f62 (update):storage/opt/kangle10/script/kangle10_pre.sh
 	fi
 elif [ "$OS8" = "$centos8" ];then
 	yum_repos_s=`ls /etc/yum.repos.d | wc -l`;
 	if [ "$yum_repos_s" == '0' ]; then
+<<<<<<< HEAD:storage/opt/kangle/script/kangle_pre.sh
 		wget -q ${mpcdn_2220}/etc/yum.repos.d/Centos-8.repo -O ${dir01}//etc/yum.repos.d/CentOS-Base.repo
+=======
+		wget -q $runner_url/etc/yum.repos.d/Centos-8.repo -O /etc/yum.repos.d/CentOS-Base.repo
+>>>>>>> parent of 6037f62 (update):storage/opt/kangle10/script/kangle10_pre.sh
 	fi;
 	epel_repos_s=`ls /etc/yum.repos.d | grep epel -i | wc -l`;
 	if [ "$epel_repos_s" == '0' ]; then
-		rpm -ivh ${mpcdn_2220}/etc/yum.repos.d/epel-release-latest-8.noarch.rpm --nodeps --force
+		rpm -ivh $runner_url/etc/yum.repos.d/epel-release-latest-8.noarch.rpm --nodeps --force
 	fi;
 	yum config-manager --set-enabled PowerTools
 	yum config-manager --set-enabled powertools
 	if [ "$mysql_ver" = "8" ]; then
+<<<<<<< HEAD:storage/opt/kangle/script/kangle_pre.sh
 		rpm -ivh ${mpcdn_2220}/etc/yum.repos.d/mysql80-community-release-el8.noarch.rpm --nodeps --force
 		wget -q ${mpcdn_2220}/etc/yum.repos.d/mysql-community-8.repo -O ${dir01}//etc/yum.repos.d/mysql-community.repo
+=======
+		rpm -ivh $runner_url/etc/yum.repos.d/mysql80-community-release-el8.noarch.rpm --nodeps --force
+		wget -q $runner_url/etc/yum.repos.d/mysql-community-8.repo -O /etc/yum.repos.d/mysql-community.repo
+>>>>>>> parent of 6037f62 (update):storage/opt/kangle10/script/kangle10_pre.sh
 	fi
 fi
 
@@ -198,7 +246,11 @@ echo -e "
 ————————————————————————————————————————————————————
 您的系统已完成YUM组件安装.正在继续进行Kangle安装
 ————————————————————————————————————————————————————"
+<<<<<<< HEAD:storage/opt/kangle/script/kangle_pre.sh
 wget -q ${mpcdn_2220}/opt/kangle/script/install.sh -O ${dir01}/install.sh;sh install.sh $kangle_ver $kangle_completed $select_ver $mysql_ver $mysql_root_password
+=======
+wget -q $runner_url/opt/kangle10/script/install.sh -O install.sh;sh install.sh $kangle_ver $kangle_completed $select_ver $mysql_ver $mysql_root_password
+>>>>>>> parent of 6037f62 (update):storage/opt/kangle10/script/kangle10_pre.sh
 else
 clear
 echo -e "

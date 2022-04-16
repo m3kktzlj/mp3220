@@ -4,9 +4,14 @@
 dir01="/root/kangle_install_tmp"
 dir02="/root/kangle_install_log"
 
+<<<<<<< HEAD:storage/opt/kangle/script/pureftp.sh
 #Source Config
 source ${dir01}/kangle_install_ver
 source ${dir01}/kangle_install_url
+=======
+source $dir02/kangle10_install_url
+source $dir02/kangle10_install_ver
+>>>>>>> parent of 6037f62 (update):storage/opt/kangle10/script/pureftp.sh
 
 #start
 #setup pure-ftpd
@@ -20,7 +25,7 @@ function setup_pureftpd
 		exit;
 	fi	
 	del_proftpd
-	DOWN_URL="${mpcdn_3825}/files/pure-ftpd/pure-ftpd-$PUREFTP_VERSION.tar.gz"
+	DOWN_URL="$mpcdn_3825/files/pure-ftpd/pure-ftpd-$PUREFTP_VERSION.tar.gz"
 	WGET_NEW_NAME="pure-ftpd-$PUREFTP_VERSION.tar.gz"
 	wget $DOWN_URL -O ${dir01}/$WGET_NEW_NAME -c
 
